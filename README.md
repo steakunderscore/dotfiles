@@ -1,12 +1,14 @@
-Dotfiles
-========
+# ~/.dotfiles
 
-Dotfiles using fresh for managment of them.
+Dotfiles using fresh for management of them.
 
-Install
-=======
+## Installation
 
-Run the following command:
+``` sh
+FRESH_LOCAL_SOURCE=steakunderscore/dotfiles bash <(curl -sL get.freshshell.com)
 ```
-bash -c "`curl -sL https://raw.github.com/steakunderscore/dotfiles/master/install.sh`"
-```
+
+My dotfiles are managed by [fresh].
+
+[fresh]: http://freshshell.com
+

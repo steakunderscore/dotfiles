@@ -1,12 +1,13 @@
 # Set your name and email with the following:
-#   git config -f ~/.gitconfig.local user.name John Appleseed
+#   git config -f ~/.gitconfig.local user.name "John Appleseed"
 #   git config -f ~/.gitconfig.local user.email me@example.com
 
 [include]
-  path = .gitconfig.local
+  path = ~/.gitconfig.local
 [color]
   ui = auto
 [core]
+  editor = vim
   excludesfile = ~/.gitignore
 [git-up "bundler"]
   check = true
@@ -24,3 +25,22 @@
   tool = vimdiff
 [mergetool]
   prompt = false
+[alias]
+    co = checkout
+    p = push
+    ci = commit
+    rb = rebase
+    rc = rebase --continue
+    rs = rebase --skip
+    br = branch -avv
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    rp = remote prune
+    statsu = status
+    st = status
+    scrub = clean -dxf
+    push = push --recurse-submodules=check
+    hunt = log --after='48 hours ago' --author
+[branch]
+    autosetuprebase = always
+[diff]
+    renames = true

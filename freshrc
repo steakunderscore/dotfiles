@@ -7,7 +7,12 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 # Config
 fresh-options --file
   fresh config/\*
-  fresh twe4ked/dotfiles config/\*
+  fresh twe4ked/dotfiles config/irb
+  fresh twe4ked/dotfiles config/ranger
+  fresh twe4ked/dotfiles config/ackrc
+  fresh twe4ked/dotfiles config/gemrc
+  fresh twe4ked/dotfiles config/pryrc
+  fresh twe4ked/dotfiles config/tmux.conf
   fresh jasoncodes/dotfiles config/inputrc
   fresh jasoncodes/dotfiles config/tmux.conf
   fresh jasoncodes/dotfiles config/psqlrc

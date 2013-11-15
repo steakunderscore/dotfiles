@@ -44,6 +44,7 @@ fresh-options
 
 fresh zsh-users/zsh-completions src/_ack --file=completion/_ack
 fresh zsh-users/zsh-completions src/_heroku --file=completion/_heroku
+fresh zsh-users/zsh-completions src/_rvm --file=completion/_rvm
 fresh robbyrussell/oh-my-zsh plugins/brew/_brew --file=completion/_brew --ref=55f09f8
 
 fresh zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting.zsh --file=vendor/zsh-syntax-highlighting.zsh
@@ -88,7 +89,7 @@ fresh jasoncodes/dotfiles shell/editor.sh
 fresh jasoncodes/dotfiles shell/config/filters.sh
 
 fresh twe4ked/dotfiles shell/exports.sh
-fresh twe4ked/dotfiles shell/aliases/\*
+fresh shell/aliases/\*
 fresh twe4ked/dotfiles shell/functions/\*
 
 fresh jasoncodes/dotfiles shell/config/rbenv.sh

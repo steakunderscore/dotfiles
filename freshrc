@@ -22,6 +22,7 @@ fresh henrik/dotfiles rubyrc --file=~/.pryrc --filter='cat; echo include RubyRC'
 
 # Zsh
 fresh-options --file=~/.zshrc --marker
+  fresh vic/...          config/rvm
   fresh twe4ked/dotfiles shell/zsh/completion.zsh
   fresh twe4ked/dotfiles shell/zsh/prompt.zsh
   fresh twe4ked/dotfiles shell/zsh/title.zsh

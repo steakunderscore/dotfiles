@@ -63,7 +63,7 @@ fresh-options --file=~/.vimrc --marker=\"
   fresh twe4ked/dotfiles vim/keybindings.vim
   fresh twe4ked/dotfiles vim/plugin_config/\*
   fresh twe4ked/dotfiles vim/auto_commands.vim
-  fresh twe4ked/dotfiles vim/vimrc
+  fresh vim/vimrc
   fresh jasoncodes/dotfiles vim/mappings/indent.vim
   fresh jasoncodes/dotfiles vim/mappings/pasteboard.vim
   fresh jasoncodes/dotfiles vim/mappings/whitespace.vim

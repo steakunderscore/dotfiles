@@ -7,7 +7,6 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 # Config
 fresh-options --file
   fresh config/\*
-  fresh twe4ked/dotfiles config/irb
   fresh twe4ked/dotfiles config/ranger
   fresh twe4ked/dotfiles config/ackrc
   fresh twe4ked/dotfiles config/gemrc
@@ -100,7 +99,7 @@ fresh jasoncodes/dotfiles shell/config/rbenv.sh
 # irb
 fresh-options --file=~/.irbrc
   fresh twe4ked/dotfiles config/irb/encoding.rb
-  fresh jasoncodes/dotfiles config/irbrc
+  fresh config/irb/irbrc
   fresh twe4ked/dotfiles config/irb/prompt.rb
 fresh-options
 

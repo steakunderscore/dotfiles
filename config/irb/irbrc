@@ -181,6 +181,8 @@ end
 # Show ActiveRecord queries in the console
 extend_console 'rails', :require => false, :if => lambda { defined?(Rails) || ENV['RAILS_ENV'] } do
 
+  require 'active_record'
+
   on_irb_init do
     if defined? Rails
       Rails.logger = Logger.new(STDOUT) if Rails.respond_to? :logger=

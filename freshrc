@@ -19,6 +19,11 @@ fresh-options
 fresh twe4ked/dotfiles config/ranger/rc.conf --file=~/.config/ranger/rc.conf
 fresh henrik/dotfiles rubyrc --file=~/.pryrc --filter='cat; echo include RubyRC'
 
+# i3
+fresh-options --file=~/.i3/config --marker
+  fresh config/i3/config
+fresh-options
+
 # Zsh
 fresh-options --file=~/.zshrc --marker
   fresh vic/...          config/rvm

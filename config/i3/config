@@ -15,6 +15,9 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # Or from github:
 #font xft:Cousine bold 7.2
 
+# default programs to always run
+exec /usr/bin/nm-applet
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 new_window pixel 2
 #focus_follows_mouse  no
@@ -221,8 +224,8 @@ bindsym XF86AudioStop exec "~/.bin/player stop"
 bindsym XF86AudioNext exec "~/.bin/player next"
 bindsym XF86AudioPrev exec "~/.bin/player previous"
 
-bindsym XF86KbdBrightnessDown exec "sudo /opt/kbdlight/bin/kbdlight -"
-bindsym XF86KbdBrightnessUp exec "sudo /opt/kbdlight/bin/kbdlight +"
+bindsym XF86KbdBrightnessDown exec "xbacklight -dec 10"
+bindsym XF86KbdBrightnessUp exec "xbacklight -inc 10"
 bindsym XF86TouchpadToggle exec "synclient TouchpadOff=$(synclient | awk '/TouchpadOff/ {print ($3+1)%2}')"
 
 #bindsym $mod+a exec "urxvtc -e alsamixer"

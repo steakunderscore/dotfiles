@@ -32,7 +32,7 @@
     rb = rebase
     rc = rebase --continue
     rs = rebase --skip
-    br = branch -avv
+    br = branch -vv
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     rp = remote prune
     statsu = status

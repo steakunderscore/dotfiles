@@ -76,8 +76,9 @@ bar {
 
 ######## startup  ####################################################
 
-exec --no-startup-id copyq
-exec_always --no-startup-id feh --bg-fill ~/.i3/shadow.jpg
+
+<% `wget -q -O #{ENV['HOME']}/Pictures/.i3/background.jpg http://dphotomagazine.s3.amazonaws.com/wp-content/uploads/2011/03/Tapuaenuku.jpg` %>
+exec_always --no-startup-id feh --bg-fill ~/Pictures/.i3/background.jpg
 
 <% if system("laptop-detect") %>
    exec /usr/bin/nm-applet
@@ -118,7 +119,8 @@ client.urgent           #2f343a #900000 #ffffff
 ######## keybindings #################################################
 
 # lock screen
-bindsym $mod+Ctrl+l exec i3lock -i ~/.i3/locked-door.png -t -c 000000
+<% `wget -q -O #{ENV['HOME']}/Pictures/.i3/locked.png http://www.hdpaperwall.com/wp-content/uploads/2013/11/Screenshot.png` %>
+bindsym $mod+Ctrl+l exec i3lock -p win -i ~/Pictures/.i3/locked.png -c 000000
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -127,7 +129,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec i3-dmenu-desktop
+bindsym $mod+d exec dmenu_run
 
 # screen capture
 bindcode 107 exec shutter

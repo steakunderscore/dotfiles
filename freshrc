@@ -20,9 +20,12 @@ fresh twe4ked/dotfiles config/ranger/rc.conf --file=~/.config/ranger/rc.conf
 fresh henrik/dotfiles rubyrc --file=~/.pryrc --filter='cat; echo include RubyRC'
 
 # i3
-fresh-options --file=~/.i3/config --marker
-  fresh config/i3/config
-fresh-options
+fresh config/i3/config.erb                  --file=~/.i3/config               --filter="erb"
+fresh config/i3/statusbar-conky.conf        --file=~/.i3/statusbar-conky.conf
+fresh config/i3/statusbar-conky-laptop.conf --file=~/.i3/statusbar-conky-laptop.conf
+fresh peter-vaczi/config_stuff config/i3/locked-door.jpg  --file=~/.i3/locked-door.jpg
+fresh peter-vaczi/config_stuff config/i3/shadow.jpg       --file=~/.i3/shadow.jpg
+fresh peter-vaczi/config_stuff config/i3/conky-wrapper.sh --bin=~/.i3/conky-wrapper.sh
 
 # Zsh
 fresh-options --file=~/.zshrc --marker

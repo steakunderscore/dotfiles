@@ -1,0 +1,241 @@
+set $mod Mod4
+
+
+######## general  ####################################################
+force_focus_wrapping yes
+focus_follows_mouse yes
+workspace_auto_back_and_forth yes
+
+workspace_layout tabbed
+default_orientation horizontal
+
+floating_modifier $mod
+
+######## statusbar ###################################################
+<% if system("laptop-detect") %>
+bar {
+    status_command ~/.i3/conky-wrapper.sh ~/.i3/statusbar-conky-laptop.conf
+    i3bar_command  i3bar
+    mode dock
+    position top
+    #output LVDS1
+    tray_output LVDS1
+    font pango:Source Code Pro 12
+    workspace_buttons yes
+    colors {
+        background #000000
+        statusline #ffffff
+        separator #888888
+
+        focused_workspace  #4c7899 #285577 #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+    }
+}
+<% end %>
+<% unless system("laptop-detect") %>
+bar {
+    output DVI1
+    status_command ~/.i3/conky-wrapper.sh ~/.i3/statusbar-conky.conf
+    i3bar_command  i3bar
+    mode dock
+    position top
+    tray_output none
+    font pango:Source Code Pro 12
+    workspace_buttons yes
+    colors {
+        background #000000
+        statusline #ffffff
+        separator #888888
+
+        focused_workspace  #4c7899 #285577 #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+    }
+}
+bar {
+    output HDMI1
+    position top
+    tray_output HDMI1
+    font pango:Source Code Pro 12
+    workspace_buttons yes
+    colors {
+        background #000000
+        statusline #ffffff
+        separator #888888
+
+        focused_workspace  #4c7899 #285577 #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+    }
+}
+<% end %>
+
+######## startup  ####################################################
+
+exec --no-startup-id copyq
+exec_always --no-startup-id feh --bg-fill ~/.i3/shadow.jpg
+
+<% if system("laptop-detect") %>
+   exec /usr/bin/nm-applet
+<% end %>
+
+<% unless system("laptop-detect") %>
+   # set the dual monitor
+   exec_always --no-startup-id xrandr --output HDMI1 --right-of VGA1
+
+   # assign workspaces to screens
+   workspace 1 output VGA1
+   workspace 2 output VGA1
+   workspace 3 output VGA1
+   workspace 4 output VGA1
+   workspace 5 output VGA1
+   workspace 6 output HDMI1
+   workspace 7 output HDMI1
+   workspace 8 output HDMI1
+   workspace 9 output HDMI1
+   workspace 10 output HDMI1
+<% end %>
+
+######## look and feel ###############################################
+
+new_window 1pixel
+new_float  1pixel
+hide_edge_borders both
+
+font pango:Source Code Pro 12
+
+# colors
+# class                 border  backgr. text
+client.focused          #4c7899 #285577 #ffffff
+client.focused_inactive #333333 #5f676a #ffffff
+client.unfocused        #333333 #222222 #888888
+client.urgent           #2f343a #900000 #ffffff
+
+######## keybindings #################################################
+
+# lock screen
+bindsym $mod+Ctrl+l exec i3lock -i ~/.i3/locked-door.png -t -c 000000
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+Q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec i3-dmenu-desktop
+
+# screen capture
+bindcode 107 exec shutter
+#bindsym PrintScreen exec shutter
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, default)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout default
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindcode $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+bindsym $mod+Prior workspace prev
+bindsym $mod+Next workspace next
+
+# Move the focused container to workspace.
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# audio controls
+bindsym XF86AudioMute        exec mpc volume 0
+bindsym XF86AudioStop        exec mpc stop
+bindsym XF86AudioPrev        exec mpc prev
+bindsym XF86AudioNext        exec mpc next
+bindsym XF86AudioPlay        exec mpc toggle
+bindsym XF86AudioLowerVolume exec mpc volume -1
+bindsym XF86AudioRaiseVolume exec mpc volume +1
+
+# reload the configuration file
+bindsym $mod+Shift+C reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+R restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+E exit
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # They resize the border in the direction you pressed, e.g.
+        # when pressing left, the window is resized so that it has
+        # more space on its left
+
+bindsym Left resize shrink left 10 px or 10 ppt
+bindsym Shift+Left resize grow   left 10 px or 10 ppt
+
+bindsym Down resize shrink down 10 px or 10 ppt
+bindsym Shift+Down resize grow   down 10 px or 10 ppt
+
+bindsym Up resize shrink up 10 px or 10 ppt
+bindsym Shift+Up resize grow   up 10 px or 10 ppt
+
+bindsym Right resize shrink right 10 px or 10 ppt
+bindsym Shift+Right resize grow   right 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"

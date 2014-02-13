@@ -1,4 +1,7 @@
 set $mod Mod4
+set $dsp_l LVDS1
+set $dsp1 VGA1
+set $dsp2 HDMI1
 
 
 ######## general  ####################################################
@@ -18,8 +21,8 @@ bar {
     i3bar_command  i3bar
     mode dock
     position top
-    #output LVDS1
-    tray_output LVDS1
+    #output $dsp_l
+    tray_output $dsp_l
     font pango:Source Code Pro 12
     workspace_buttons yes
     colors {
@@ -36,7 +39,7 @@ bar {
 <% end %>
 <% unless system("laptop-detect") %>
 bar {
-    output DVI1
+    output $dsp1
     status_command ~/.i3/conky-wrapper.sh ~/.i3/statusbar-conky.conf
     i3bar_command  i3bar
     mode dock
@@ -56,9 +59,9 @@ bar {
     }
 }
 bar {
-    output HDMI1
+    output $dsp2
     position top
-    tray_output HDMI1
+    tray_output $dsp2
     font pango:Source Code Pro 12
     workspace_buttons yes
     colors {
@@ -86,19 +89,19 @@ exec_always --no-startup-id feh --bg-fill ~/Pictures/.i3/background.jpg
 
 <% unless system("laptop-detect") %>
    # set the dual monitor
-   exec_always --no-startup-id xrandr --output HDMI1 --right-of VGA1
+   exec_always --no-startup-id xrandr --output $dsp2 --right-of $dsp1
 
    # assign workspaces to screens
-   workspace 1 output VGA1
-   workspace 2 output VGA1
-   workspace 3 output VGA1
-   workspace 4 output VGA1
-   workspace 5 output VGA1
-   workspace 6 output HDMI1
-   workspace 7 output HDMI1
-   workspace 8 output HDMI1
-   workspace 9 output HDMI1
-   workspace 10 output HDMI1
+   workspace 1 output $dsp1
+   workspace 2 output $dsp1
+   workspace 3 output $dsp1
+   workspace 4 output $dsp1
+   workspace 5 output $dsp1
+   workspace 6 output $dsp2
+   workspace 7 output $dsp2
+   workspace 8 output $dsp2
+   workspace 9 output $dsp2
+   workspace 10 output $dsp2
 <% end %>
 
 ######## look and feel ###############################################

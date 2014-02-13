@@ -199,14 +199,21 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# audio controls
-bindsym XF86AudioMute        exec mpc volume 0
-bindsym XF86AudioStop        exec mpc stop
-bindsym XF86AudioPrev        exec mpc prev
-bindsym XF86AudioNext        exec mpc next
-bindsym XF86AudioPlay        exec mpc toggle
-bindsym XF86AudioLowerVolume exec mpc volume -1
-bindsym XF86AudioRaiseVolume exec mpc volume +1
+# Audio controls
+bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master '3%+'"
+bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master '3%-'"
+bindsym XF86AudioMute        exec "amixer -D pulse set Master toggle"
+#bindsym XF86AudioStop        exec mpc stop
+#bindsym XF86AudioPrev        exec mpc prev
+#bindsym XF86AudioNext        exec mpc next
+#bindsym XF86AudioPlay        exec mpc toggle
+
+# Brightness controls
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp   exec xbacklight -inc 10
+#bindsym XF86KbdBrightnessDown exec xbacklight -k -dec 10
+#bindsym XF86KbdBrightnessUp   exec xbacklight -k -inc 10
+
 
 # reload the configuration file
 bindsym $mod+Shift+C reload

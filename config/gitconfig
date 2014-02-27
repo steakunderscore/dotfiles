@@ -40,6 +40,7 @@
     scrub = clean -dxf
     push = push --recurse-submodules=check
     hunt = log --after='48 hours ago' --author
+    work = "!sh -c 'git checkout -b bug/$0 origin/master'"
 [branch]
     autosetuprebase = always
 [diff]

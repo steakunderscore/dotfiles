@@ -99,8 +99,6 @@ fresh twe4ked/dotfiles shell/exports.sh
 fresh shell/aliases/\*
 fresh twe4ked/dotfiles shell/functions/\*
 
-fresh jasoncodes/dotfiles shell/config/rbenv.sh
-
 # irb
 fresh-options --file=~/.irbrc
   fresh twe4ked/dotfiles config/irb/encoding.rb

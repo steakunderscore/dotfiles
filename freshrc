@@ -95,7 +95,7 @@ fresh jasoncodes/dotfiles shell/aliases/\*
 fresh jasoncodes/dotfiles shell/editor.sh
 fresh jasoncodes/dotfiles shell/config/filters.sh
 
-fresh twe4ked/dotfiles shell/exports.sh
+fresh shell/exports.sh
 fresh shell/aliases/\*
 fresh twe4ked/dotfiles shell/functions/\*
 

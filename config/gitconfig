@@ -15,6 +15,8 @@
   autosquash = true
 [color "diff"]
   commit = yellow reverse
+[diff]
+  renames = true
 [push]
   default = current
 [init]
@@ -26,23 +28,23 @@
 [mergetool]
   prompt = false
 [alias]
-    co = checkout
-    p = push
-    ci = commit
-    rb = rebase
-    rc = rebase --continue
-    rs = rebase --skip
-    br = branch -vv
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    rp = remote prune
-    statsu = status
-    st = status
-    scrub = clean -dxf
-    push = push --recurse-submodules=check
-    hunt = log --after='48 hours ago' --author
-    work = "!sh -c 'git checkout -b bug/$0 origin/master'"
-    ignore = "!gi() { curl http://www.gitignore.io/api/$@ > .gitignore ;}; gi"
+  co = checkout
+  p = push
+  ci = commit
+  rb = rebase
+  rc = rebase --continue
+  rs = rebase --skip
+  br = branch -vv
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  rp = remote prune
+  statsu = status
+  st = status
+  scrub = clean -dxf
+  push = push --recurse-submodules=check
+  hunt = log --after='48 hours ago' --author
+  work = "!sh -c 'git checkout -b bug/$0 origin/master'"
+  ignore = "!gi() { curl http://www.gitignore.io/api/$@ > .gitignore ;}; gi"
 [branch]
-    autosetuprebase = always
-[diff]
-    renames = true
+  autosetuprebase = always
+[grep]
+  linenumber = true

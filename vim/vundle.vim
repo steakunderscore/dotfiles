@@ -21,14 +21,17 @@ Bundle 'godlygeek/tabular'
 Bundle 'twe4ked/vim-diff-toggle'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-surround'
-Bundle 'ntpeters/vim-better-whitespace'
+Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'Shougo/neocomplcache'
 Bundle 'rking/vim-ruby-refactoring'
 Bundle 'bkad/CamelCaseMotion'
 
 " Navigation
 Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp.vim'
+Bundle 'jasoncodes/ctrlp-modified.vim'
+Bundle 'tacahiroy/ctrlp-funky'
+Bundle 'ivalkeen/vim-ctrlp-tjump'
 Bundle 'mileszs/ack.vim'
 
 " Language
@@ -44,8 +47,8 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'kablamo/vim-git-log'
 
 " Colours
-Bundle 'twe4ked/vim-colorscheme-switcher'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'bclear'
 Bundle 'noahfrederick/Hemisu'
+Bundle 'AlxHnr/clear_colors'

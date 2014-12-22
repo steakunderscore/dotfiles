@@ -7,13 +7,17 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 # Config
 fresh-options --file
   fresh config/\*
-  fresh twe4ked/dotfiles config/ranger
   fresh twe4ked/dotfiles config/ackrc
   fresh twe4ked/dotfiles config/gemrc
   fresh twe4ked/dotfiles config/pryrc
+  fresh twe4ked/dotfiles config/ranger
   fresh twe4ked/dotfiles config/tmux.conf
+  fresh twe4ked/dotfiles config/gitconfig
+  fresh twe4ked/dotfiles config/hushlogin
+  fresh twe4ked/dotfiles config/irb
   fresh jasoncodes/dotfiles config/inputrc
   fresh jasoncodes/dotfiles config/tmux.conf
+  fresh jasoncodes/dotfiles config/psqlrc
 fresh-options
 fresh twe4ked/dotfiles config/ranger/rc.conf --file=~/.config/ranger/rc.conf
 fresh henrik/dotfiles rubyrc --file=~/.pryrc --filter='cat; echo include RubyRC'
@@ -26,15 +30,13 @@ fresh peter-vaczi/config_stuff config/i3/conky-wrapper.sh --bin=~/.i3/conky-wrap
 
 # Zsh
 fresh-options --file=~/.zshrc --marker
-  fresh vic/...          config/rvm
   fresh twe4ked/dotfiles shell/zsh/completion.zsh
   fresh twe4ked/dotfiles shell/zsh/prompt.zsh
   fresh twe4ked/dotfiles shell/zsh/title.zsh
   fresh twe4ked/dotfiles shell/zsh/aliases.zsh
   fresh twe4ked/dotfiles shell/zsh/zshrc
-
-  # Better keybindings
-  fresh shell/zkbd
+  fresh twe4ked/dotfiles shell/zsh/keybindings.zsh
+  fresh twe4ked/dotfiles shell/zsh/selecta.zsh
 
   # this loads the shell files and needs to be at the bottom of the zshrc for
   # compdef be availiable
@@ -53,11 +55,17 @@ fresh zsh-users/zsh-completions src/_ack --file=completion/_ack
 fresh zsh-users/zsh-completions src/_heroku --file=completion/_heroku
 fresh zsh-users/zsh-completions src/_rvm --file=completion/_rvm
 fresh robbyrussell/oh-my-zsh plugins/brew/_brew --file=completion/_brew --ref=55f09f8
+fresh twe4ked/dotfiles shell/zsh/completions/_gh --file=completion/_gh
+fresh thoughtbot/dotfiles zsh/completion/_ag --file=completion/_ag
 
 fresh zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting.zsh --file=vendor/zsh-syntax-highlighting.zsh
 fresh zsh-users/zsh-syntax-highlighting highlighters/main/main-highlighter.zsh --file=vendor/highlighters/main/main-highlighter.zsh
 fresh zsh-users/zsh-syntax-highlighting highlighters/brackets/brackets-highlighter.zsh --file=vendor/highlighters/brackets/brackets-highlighter.zsh
 fresh twe4ked/dotfiles shell/zsh/zsh-syntax-highlighting.zsh --file=~/.zshrc
+
+filter_vundle_lines() {
+  grep -v ^Bundle
+}
 
 # Vim
 fresh-options --file=~/.vimrc --marker=\"
@@ -65,34 +73,42 @@ fresh-options --file=~/.vimrc --marker=\"
   fresh twe4ked/dotfiles vim/vundle_before.vim
   fresh vim/vundle.vim
   fresh twe4ked/dotfiles vim/vundle_after.vim
-  fresh twe4ked/dotfiles vim/keybindings.vim
   fresh twe4ked/dotfiles vim/plugin_config/\*
-  fresh twe4ked/dotfiles vim/auto_commands.vim
+  fresh twe4ked/dotfiles vim/config/\*
   fresh vim/vimrc
   fresh jasoncodes/dotfiles vim/mappings/indent.vim
   fresh jasoncodes/dotfiles vim/mappings/pasteboard.vim
-  fresh jasoncodes/dotfiles vim/mappings/whitespace.vim
+  fresh jasoncodes/dotfiles vim/mappings/whitespace.vim --filter=filter_vundle_lines
   fresh jasoncodes/dotfiles vim/config/undo.vim
   fresh jasoncodes/dotfiles vim/config/tags.vim
-  fresh jasoncodes/dotfiles vim/config/marked.vim
   fresh jasoncodes/dotfiles vim/config/auto_mkdir.vim
   fresh jasoncodes/dotfiles vim/config/search.vim
   fresh jasoncodes/dotfiles vim/config/cursor.vim
   fresh jasoncodes/dotfiles vim/config/bubbling.vim
   fresh jasoncodes/dotfiles vim/functions.vim
-  fresh jasoncodes/dotfiles vim/plugins/ctrlp.vim
+  fresh jasoncodes/dotfiles vim/plugins/ctrlp.vim --filter=filter_vundle_lines
+  fresh jasoncodes/dotfiles vim/plugins/markdown.vim --filter=filter_vundle_lines
+  fresh jasoncodes/dotfiles vim/plugins/ruby.vim --filter=filter_vundle_lines
   # Ruby autocommands
   fresh jasoncodes/dotfiles vim/plugins/ruby.vim --filter='sed -n 11,13p' --ref=da7d4a8
+  fresh hackling/dotfiles vim/plugins/surround.vim --filter=filter_vundle_lines
   fresh nathanaelkane/dotfiles vim/plugins/easymotion.vim
+  fresh jasoncodes/dotfiles vim/config/completion.vim
   fresh hackling/dotfiles vim/keybindings/numpad.vim
 fresh-options
-fresh twe4ked/dotfiles vim/gvimrc --file
-fresh twe4ked/dotfiles vim/colors --file=~/.vim/colors/
+fresh vim/gvimrc --file
+fresh vim/colors --file=~/.vim/colors/
 
 # Shell
 fresh jasoncodes/dotfiles shell/aliases/\*
 fresh jasoncodes/dotfiles shell/editor.sh
 fresh jasoncodes/dotfiles shell/config/filters.sh
+fresh jasoncodes/dotfiles shell/config/pager.sh
+fresh jasoncodes/dotfiles shell/config/heroku.sh
+fresh jasoncodes/dotfiles shell/config/rbenv.sh --ref=1411943
+fresh jasoncodes/dotfiles shell/config/tmux.sh
+fresh jasoncodes/dotfiles shell/functions/realpath.sh
+fresh markryall/dotfiles shell/aliases/dvcs.sh
 
 fresh shell/exports.sh
 fresh shell/aliases/\*
@@ -101,14 +117,29 @@ fresh twe4ked/dotfiles shell/functions/\*
 # irb
 fresh-options --file=~/.irbrc
   fresh twe4ked/dotfiles config/irb/encoding.rb
-  fresh config/irb/irbrc
+  fresh jasoncodes/dotfiles config/irbrc
   fresh twe4ked/dotfiles config/irb/prompt.rb
 fresh-options
 
 # bin
 fresh-options --bin
   fresh bin/\*
-  fresh twe4ked/dotfiles bin/\*
+  fresh twe4ked/dotfiles bin/add-keys
+  fresh twe4ked/dotfiles bin/build_status
+  fresh twe4ked/dotfiles bin/date-iso
+  fresh twe4ked/dotfiles bin/fresh-convert
+  fresh twe4ked/dotfiles bin/git-author
+  fresh twe4ked/dotfiles bin/git-github-url
+  fresh twe4ked/dotfiles bin/git-swap-latest
+  fresh twe4ked/dotfiles bin/git-tag-rm
+  fresh twe4ked/dotfiles bin/heroku-remote-add
+  fresh twe4ked/dotfiles bin/psg
+  fresh twe4ked/dotfiles bin/rubygems-github-urls
+  fresh twe4ked/dotfiles bin/squash-whitespace
+  fresh twe4ked/dotfiles bin/wemux-connect
+  fresh twe4ked/dotfiles bin/whiteboard-clean
+  fresh twe4ked/catacomb bin/catacomb
+  fresh twe4ked/twitter-whois bin/twitter-whois
   fresh jasoncodes/dotfiles bin/\*
   fresh jasoncodes/dotfiles bin/wemux/\*
   fresh pengwynn/dotfiles bin/gxpr
@@ -116,6 +147,11 @@ fresh-options --bin
   fresh pengwynn/dotfiles bin/+x
   fresh defunkt/repl bin/repl
   fresh hackling/morse bin/morse
+  fresh garybernhardt/selecta selecta
+  fresh garybernhardt/dotfiles bin/field
+  fresh garybernhardt/dotfiles bin/run-command-on-git-revisions
+  fresh pengwynn/dotfiles bin/git-pr
+  fresh pengwynn/dotfiles bin/mx
 fresh-options
 fresh sivel/speedtest-cli speedtest_cli.py --bin=~/bin/speedtest
 

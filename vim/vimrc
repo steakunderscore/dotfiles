@@ -4,7 +4,6 @@ set linebreak                               " ...but when I do, I wrap whole wor
 set t_Co=256                                " Support for xterm with 256 colors
 set number                                  " Show line numbers
 set ruler                                   " Show ruler
-set listchars=trail:.,tab:>-,eol:¬          " Change the invisible characters
 set noswapfile                              " Don't create annoying *.swp files
 set scrolloff=5                             " Start scrolling the file 5 lines before the end of the window
 set spelllang=en_au                         " Set default spelling language to English (Australia)
@@ -17,6 +16,10 @@ set laststatus=2                            " Always show the status line
 set history=1000
 set autoread
 set cursorline
+set backspace=indent,eol,start              " Make backspace behave rationally
+
+" Change the invisible characters
+set listchars=trail:.,tab:▸\ ,eol:¬,extends:❯,precedes:❮
 
 " Searching
 set hlsearch                                " Highlight searches
@@ -25,14 +28,18 @@ set ignorecase                              " Ignore case
 set smartcase                               " Override 'ignorecase' option if the search contains upper case characters.
 
 " Indentation
-set shiftwidth=4                            " Number of spaces to use in each autoindent step
-set tabstop=4                               " Two tab spaces
-set softtabstop=4                           " Number of spaces to skip or insert when <BS>ing or <Tab>ing
+set shiftwidth=2                            " Number of spaces to use in each autoindent step
+set tabstop=2                               " Two tab spaces
+set softtabstop=2                           " Number of spaces to skip or insert when <BS>ing or <Tab>ing
 set expandtab                               " Spaces instead of tabs for better cross-editor compatibility
 set autoindent                              " Keep the indent when creating a new line
 set smarttab                                " Use shiftwidth and softtabstop to insert or delete (on <BS>) blanks
 set cindent                                 " Recommended seting for automatic C-style indentation
 set autoindent                              " Automatic indentation in non-C files
+
+" Prevent Vim from clobbering the scrollback buffer
+" See http://www.shallowsky.com/linux/noaltscreen.html
+set t_ti= t_te=
 
 let g:is_posix = 1                          " Better highlighting of shell files
 
@@ -45,3 +52,6 @@ colorscheme jellybeans_custom
 
 " Use % to jump to matching begin/end of blocks as well as brackets/parens
 runtime macros/matchit.vim
+
+" http://tim.theenchanter.com/2008/07/crontab-temp-file-must-be-edited-in.html
+set backupskip=/tmp/*,/private/tmp/*"

@@ -23,8 +23,8 @@ fresh twe4ked/dotfiles config/ranger/rc.conf --file=~/.config/ranger/rc.conf
 fresh henrik/dotfiles rubyrc --file=~/.pryrc --filter='cat; echo include RubyRC'
 
 # i3
-fresh config/i3/config.erb                  --file=~/.i3/config               --filter="erb"
-fresh config/i3/statusbar-conky.conf        --file=~/.i3/statusbar-conky.conf
+fresh config/i3/config.erb --file=~/.i3/config --filter="erb"
+fresh config/i3/statusbar-conky.conf --file=~/.i3/statusbar-conky.conf
 fresh config/i3/statusbar-conky-laptop.conf --file=~/.i3/statusbar-conky-laptop.conf
 fresh peter-vaczi/config_stuff config/i3/conky-wrapper.sh --bin=~/.i3/conky-wrapper.sh
 
@@ -54,7 +54,6 @@ fresh-options
 fresh zsh-users/zsh-completions src/_ack --file=completion/_ack
 fresh zsh-users/zsh-completions src/_heroku --file=completion/_heroku
 fresh zsh-users/zsh-completions src/_rvm --file=completion/_rvm
-fresh robbyrussell/oh-my-zsh plugins/brew/_brew --file=completion/_brew --ref=55f09f8
 fresh twe4ked/dotfiles shell/zsh/completions/_gh --file=completion/_gh
 fresh thoughtbot/dotfiles zsh/completion/_ag --file=completion/_ag
 
@@ -94,10 +93,9 @@ fresh-options --file=~/.vimrc --marker=\"
   fresh hackling/dotfiles vim/plugins/surround.vim --filter=filter_vundle_lines
   fresh nathanaelkane/dotfiles vim/plugins/easymotion.vim
   fresh jasoncodes/dotfiles vim/config/completion.vim
-  fresh hackling/dotfiles vim/keybindings/numpad.vim
 fresh-options
-fresh vim/gvimrc --file
-fresh vim/colors --file=~/.vim/colors/
+fresh twe4ked/dotfiles vim/gvimrc --file
+fresh twe4ked/dotfiles vim/colors --file=~/.vim/colors/
 
 # Shell
 fresh jasoncodes/dotfiles shell/aliases/\*
@@ -111,7 +109,7 @@ fresh jasoncodes/dotfiles shell/functions/realpath.sh
 fresh markryall/dotfiles shell/aliases/dvcs.sh
 
 fresh shell/exports.sh
-fresh shell/aliases/\*
+fresh twe4ked/dotfiles shell/aliases/aliases.sh
 fresh twe4ked/dotfiles shell/functions/\*
 
 # irb

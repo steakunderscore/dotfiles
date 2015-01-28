@@ -43,7 +43,7 @@
   push = push --recurse-submodules=check
   hunt = log --after='48 hours ago' --author
   work = "!sh -c 'git checkout -b bug/$0 origin/master'"
-  ignore = "!gi() { curl http://www.gitignore.io/api/$@ > .gitignore ;}; gi"
+  ignore = "!gi() { curl https://www.gitignore.io/api/$@ > .gitignore ;}; gi"
 [branch]
   autosetuprebase = always
 [grep]

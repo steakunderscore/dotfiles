@@ -152,6 +152,7 @@ fresh-options --bin
   fresh pengwynn/dotfiles bin/mx
 fresh-options
 fresh sivel/speedtest-cli speedtest_cli.py --bin=~/bin/speedtest
+fresh git@gist.github.com:/233736.git simple\ caching\ proxy --bin=~/bin/proxy-http --ref=f126ad1
 
 # git
 fresh-options --file=~/.gitignore --marker

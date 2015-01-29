@@ -43,8 +43,9 @@ fresh-options --file=~/.zshrc --marker
   fresh freshshell/fresh contrib/source-build.sh
 
   fresh rupa/z z.sh
-  fresh robbyrussell/oh-my-zsh lib/edit-command-line.zsh --ref=a38774c
-  fresh robbyrussell/oh-my-zsh plugins/git-flow/git-flow.plugin.zsh --ref=df30eae
+  fresh robbyrussell/oh-my-zsh lib/grep.zsh --ref=5728a56
+  fresh robbyrussell/oh-my-zsh lib/git.zsh --ref=5728a56
+  fresh robbyrussell/oh-my-zsh plugins/git-flow/git-flow.plugin.zsh --ref=5728a56
   fresh bjeanes/dot-files shells/zsh/lib/completion-waiting-dots.zsh
 
   # de-duplicate PATH

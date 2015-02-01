@@ -9,7 +9,8 @@ fresh-options --file
   fresh config/\*
   fresh twe4ked/dotfiles config/ackrc
   fresh twe4ked/dotfiles config/gemrc
-  fresh twe4ked/dotfiles config/pryrc
+  # Use my copy of twe4ked's pryrc till he fixe's his
+  fresh steakunderscore/dotfiles-1 config/pryrc
   fresh twe4ked/dotfiles config/ranger
   fresh twe4ked/dotfiles config/tmux.conf
   fresh twe4ked/dotfiles config/hushlogin

@@ -12,7 +12,6 @@ fresh-options --file
   fresh twe4ked/dotfiles config/pryrc
   fresh twe4ked/dotfiles config/ranger
   fresh twe4ked/dotfiles config/tmux.conf
-  fresh twe4ked/dotfiles config/gitconfig
   fresh twe4ked/dotfiles config/hushlogin
   fresh twe4ked/dotfiles config/irb
   fresh jasoncodes/dotfiles config/inputrc
@@ -151,6 +150,7 @@ fresh-options --bin
   fresh garybernhardt/dotfiles bin/run-command-on-git-revisions
   fresh pengwynn/dotfiles bin/git-pr
   fresh pengwynn/dotfiles bin/mx
+  fresh git/git contrib/diff-highlight/diff-highlight
 fresh-options
 fresh sivel/speedtest-cli speedtest_cli.py --bin=~/bin/speedtest
 fresh https://gist.github.com/233736.git simple\ caching\ proxy --bin=~/bin/proxy-http --ref=f126ad1

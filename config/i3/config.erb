@@ -1,7 +1,7 @@
 set $mod Mod4
-set $dsp_l LVDS1
-set $dsp1 VGA1
-set $dsp2 HDMI1
+set $dsp_l eDP1
+set $dsp1 HDMI1
+set $dsp2 HDMI2
 
 
 ######## general  ####################################################
@@ -15,14 +15,13 @@ default_orientation horizontal
 floating_modifier $mod
 
 ######## statusbar ###################################################
-<% if system("laptop-detect") %>
 bar {
+    output $dsp_l
     status_command ~/.i3/conky-wrapper.sh ~/.i3/statusbar-conky-laptop.conf
     i3bar_command  i3bar
     mode dock
     position top
-    #output $dsp_l
-    tray_output $dsp_l
+    tray_output none
     font pango:Source Code Pro 12
     workspace_buttons yes
     colors {
@@ -36,15 +35,10 @@ bar {
         urgent_workspace   #2f343a #900000 #ffffff
     }
 }
-<% end %>
-<% unless system("laptop-detect") %>
 bar {
     output $dsp1
-    status_command ~/.i3/conky-wrapper.sh ~/.i3/statusbar-conky.conf
-    i3bar_command  i3bar
-    mode dock
     position top
-    tray_output none
+    tray_output $dsp2
     font pango:Source Code Pro 12
     workspace_buttons yes
     colors {
@@ -75,34 +69,25 @@ bar {
         urgent_workspace   #2f343a #900000 #ffffff
     }
 }
-<% end %>
 
 ######## startup  ####################################################
 
 
-<% `wget -q -O #{ENV['HOME']}/Pictures/.i3/background.jpg http://dphotomagazine.s3.amazonaws.com/wp-content/uploads/2011/03/Tapuaenuku.jpg` %>
 exec_always --no-startup-id feh --bg-fill ~/Pictures/.i3/background.jpg
 
-<% if system("laptop-detect") %>
-   exec /usr/bin/nm-applet
-<% end %>
+exec /usr/bin/nm-applet
 
-<% unless system("laptop-detect") %>
-   # set the dual monitor
-   exec_always --no-startup-id xrandr --output $dsp2 --right-of $dsp1
-
-   # assign workspaces to screens
-   workspace 1 output $dsp1
-   workspace 2 output $dsp1
-   workspace 3 output $dsp1
-   workspace 4 output $dsp1
-   workspace 5 output $dsp1
-   workspace 6 output $dsp2
-   workspace 7 output $dsp2
-   workspace 8 output $dsp2
-   workspace 9 output $dsp2
-   workspace 10 output $dsp2
-<% end %>
+# Assign workspaces to screens
+workspace 1 output $dsp1
+workspace 2 output $dsp1
+workspace 3 output $dsp1
+workspace 4 output $dsp1
+workspace 5 output $dsp1
+workspace 6 output $dsp2
+workspace 7 output $dsp2
+workspace 8 output $dsp2
+workspace 9 output $dsp2
+workspace 10 output $dsp2
 
 ######## look and feel ###############################################
 
@@ -122,8 +107,7 @@ client.urgent           #2f343a #900000 #ffffff
 ######## keybindings #################################################
 
 # lock screen
-<% `wget -q -O #{ENV['HOME']}/Pictures/.i3/locked.png http://www.hdpaperwall.com/wp-content/uploads/2013/11/Screenshot.png` %>
-bindsym $mod+Ctrl+l exec i3lock -p win -i ~/Pictures/.i3/locked.png -c 000000
+bindsym $mod+Ctrl+l exec i3lock -p win -i ~/.i3/locked.png -c 101010
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -176,6 +160,12 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindcode $mod+d focus child
+
+# Helpers for shifting workspaces arround
+bindsym $mod+Ctrl+1 move workspace to $dsp_l
+bindsym $mod+Ctrl+2 move workspace to LVDS1
+bindsym $mod+Ctrl+3 move workspace to $dsp1
+bindsym $mod+Ctrl+4 move workspace to $dsp2
 
 # switch to workspace
 bindsym $mod+1 workspace 1

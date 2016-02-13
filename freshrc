@@ -50,6 +50,8 @@ fresh-options --file=~/.zshrc --marker
 
   # de-duplicate PATH
   fresh akatov/dotfiles zshrc/dedup-path --ref=55e80fe
+
+  fresh zshrc/\*
 fresh-options
 
 fresh zsh-users/zsh-completions src/_ack --file=completion/_ack
@@ -166,3 +168,6 @@ fresh-options
 fresh https://gist.github.com/5431107.git pre-commit --bin=~/bin/_git-pre-commit-hook
 mkdir -p ~/.git_template/hooks/
 ln -sf ~/bin/_git-pre-commit-hook ~/.git_template/hooks/pre-commit
+
+# setup node version manager (NVM) in $HOME
+fresh creationix/nvm . --file=~/.nvm/ --ref=v0.30.2

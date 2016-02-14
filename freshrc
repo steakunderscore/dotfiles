@@ -135,7 +135,7 @@ fresh-options --bin
   fresh twe4ked/dotfiles bin/git-author
   fresh twe4ked/dotfiles bin/git-github-url
   fresh twe4ked/dotfiles bin/git-swap-latest
-  fresh twe4ked/dotfiles bin/git-tag-rm
+  fresh twe4ked/dotfiles bin/git-rm-tag
   fresh twe4ked/dotfiles bin/heroku-remote-add
   fresh twe4ked/dotfiles bin/psg
   fresh twe4ked/dotfiles bin/rubygems-github-urls

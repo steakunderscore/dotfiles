@@ -8,7 +8,6 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 fresh-options --file
   fresh config/\*
   fresh twe4ked/dotfiles config/ackrc
-  fresh twe4ked/dotfiles config/gemrc
   fresh twe4ked/dotfiles config/pryrc
   fresh twe4ked/dotfiles config/ranger
   fresh twe4ked/dotfiles config/tmux.conf

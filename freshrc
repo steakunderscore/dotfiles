@@ -7,17 +7,13 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 # Config
 fresh-options --file
   fresh config/\*
-  fresh twe4ked/dotfiles config/ackrc
+  # Not currently using ack, so remove for now.
+  #fresh twe4ked/dotfiles config/ackrc
   fresh twe4ked/dotfiles config/pryrc
-  fresh twe4ked/dotfiles config/ranger
-  fresh twe4ked/dotfiles config/tmux.conf
-  fresh twe4ked/dotfiles config/hushlogin
   fresh twe4ked/dotfiles config/irb
   fresh jasoncodes/dotfiles config/inputrc
-  fresh jasoncodes/dotfiles config/tmux.conf
   fresh jasoncodes/dotfiles config/psqlrc
 fresh-options
-fresh twe4ked/dotfiles config/ranger/rc.conf --file=~/.config/ranger/rc.conf
 fresh henrik/dotfiles rubyrc --file=~/.pryrc --filter='cat; echo include RubyRC'
 
 # i3
@@ -36,23 +32,33 @@ fresh-options --file=~/.zshrc --marker
   fresh twe4ked/dotfiles shell/zsh/keybindings.zsh
   fresh twe4ked/dotfiles shell/zsh/selecta.zsh
 
-  # this loads the shell files and needs to be at the bottom of the zshrc for
-  # compdef be availiable
-  fresh freshshell/fresh contrib/source-build.sh
-
   fresh rupa/z z.sh
-  fresh robbyrussell/oh-my-zsh lib/grep.zsh --ref=5728a56
-  fresh robbyrussell/oh-my-zsh lib/git.zsh --ref=5728a56
-  fresh robbyrussell/oh-my-zsh plugins/git-flow/git-flow.plugin.zsh --ref=5728a56
+  fresh robbyrussell/oh-my-zsh lib/grep.zsh
+  fresh robbyrussell/oh-my-zsh lib/git.zsh
+  fresh robbyrussell/oh-my-zsh plugins/git-flow/git-flow.plugin.zsh
   fresh bjeanes/dot-files shells/zsh/lib/completion-waiting-dots.zsh
+
+  #TODO Options to use these from https://github.com/jloveland/dotfiles/blob/0e55f40daa67363f93734c9f458472235a7850f6/freshrc#L32
+  #fresh robbyrussell/oh-my-zsh plugins/git/git.plugin.zsh
+  #fresh robbyrussell/oh-my-zsh plugins/git-remote-branch/git-remote-branch.plugin.zsh
+  #fresh robbyrussell/oh-my-zsh plugins/ruby/ruby.plugin.zsh
+  #fresh robbyrussell/oh-my-zsh plugins/gem/gem.plugin.zsh
+  #fresh robbyrussell/oh-my-zsh plugins/jsontools/jsontools.plugin.zsh
+
+  fresh zshrc/\*
+
+  fresh freshshell/fresh contrib/source-build.sh
 
   # de-duplicate PATH
   fresh akatov/dotfiles zshrc/dedup-path --ref=55e80fe
-
-  fresh zshrc/\*
 fresh-options
 
-fresh zsh-users/zsh-completions src/_ack --file=completion/_ack
+# TODO Should I have these in mine?
+#fresh freshshell/fresh contrib/source-build.sh --file=~/.bash_profile
+#fresh freshshell/fresh contrib/source-build.sh --file=~/.bashrc
+
+# See reason above
+#fresh zsh-users/zsh-completions src/_ack --file=completion/_ack
 fresh zsh-users/zsh-completions src/_heroku --file=completion/_heroku
 fresh zsh-users/zsh-completions src/_rvm --file=completion/_rvm
 fresh twe4ked/dotfiles shell/zsh/completions/_gh --file=completion/_gh
@@ -122,7 +128,6 @@ fresh-options
 
 # bin
 fresh-options --bin
-  fresh bin/\*
   fresh twe4ked/dotfiles bin/add-keys
   fresh twe4ked/dotfiles bin/build_status
   fresh twe4ked/dotfiles bin/date-iso
@@ -135,23 +140,25 @@ fresh-options --bin
   fresh twe4ked/dotfiles bin/psg
   fresh twe4ked/dotfiles bin/rubygems-github-urls
   fresh twe4ked/dotfiles bin/squash-whitespace
-  fresh twe4ked/dotfiles bin/wemux-connect
   fresh twe4ked/dotfiles bin/whiteboard-clean
   fresh twe4ked/catacomb bin/catacomb
   fresh twe4ked/twitter-whois bin/twitter-whois
-  fresh jasoncodes/dotfiles bin/\*
-  fresh jasoncodes/dotfiles bin/wemux/\*
-  fresh pengwynn/dotfiles bin/gxpr
-  fresh pengwynn/dotfiles bin/git-go
+
+  fresh jasoncodes/dotfiles bin/fix-newline-eof
+  fresh jasoncodes/dotfiles bin/gemdiff
+  fresh jasoncodes/dotfiles bin/loop
+  fresh jasoncodes/dotfiles bin/pidof
+  fresh jasoncodes/dotfiles bin/timein
+  fresh jasoncodes/dotfiles bin/vacuumdball
+  fresh jasoncodes/dotfiles bin/vimdiff
+
   fresh pengwynn/dotfiles bin/+x
-  fresh defunkt/repl bin/repl
-  fresh hackling/morse bin/morse
   fresh garybernhardt/selecta selecta
-  fresh garybernhardt/dotfiles bin/field
   fresh garybernhardt/dotfiles bin/run-command-on-git-revisions
   fresh pengwynn/dotfiles bin/git-pr
-  fresh pengwynn/dotfiles bin/mx
   fresh git/git contrib/diff-highlight/diff-highlight
+
+  fresh bin/\*
 fresh-options
 fresh sivel/speedtest-cli speedtest_cli.py --bin=~/bin/speedtest
 fresh https://gist.github.com/233736.git simple\ caching\ proxy --bin=~/bin/proxy-http --ref=f126ad1
@@ -167,5 +174,5 @@ fresh https://gist.github.com/5431107.git pre-commit --bin=~/bin/_git-pre-commit
 mkdir -p ~/.git_template/hooks/
 ln -sf ~/bin/_git-pre-commit-hook ~/.git_template/hooks/pre-commit
 
-# setup node version manager (NVM) in $HOME
+# setup node version manager (NVM)
 fresh creationix/nvm . --file=~/.nvm/ --ref=v0.30.2

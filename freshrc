@@ -100,19 +100,22 @@ fresh twe4ked/dotfiles vim/gvimrc --file
 fresh twe4ked/dotfiles vim/colors --file=~/.vim/colors/
 
 # Shell
-fresh jasoncodes/dotfiles shell/aliases/\*
+fresh jasoncodes/dotfiles shell/aliases/rails.sh
+fresh jasoncodes/dotfiles shell/aliases/ruby.sh
+
 fresh jasoncodes/dotfiles shell/editor.sh
 fresh jasoncodes/dotfiles shell/config/filters.sh
 fresh jasoncodes/dotfiles shell/config/pager.sh
 fresh jasoncodes/dotfiles shell/config/heroku.sh
-fresh jasoncodes/dotfiles shell/config/rbenv.sh --ref=1411943
-fresh jasoncodes/dotfiles shell/config/tmux.sh
 fresh jasoncodes/dotfiles shell/functions/realpath.sh
 fresh markryall/dotfiles shell/aliases/dvcs.sh
 
 fresh shell/exports.sh
 fresh twe4ked/dotfiles shell/aliases/aliases.sh
-fresh twe4ked/dotfiles shell/functions/\*
+fresh twe4ked/dotfiles shell/functions/hitch.sh
+fresh twe4ked/dotfiles shell/functions/h.sh
+fresh twe4ked/dotfiles shell/functions/ping.sh
+fresh twe4ked/dotfiles shell/functions/pubkey.sh
 
 # irb
 fresh-options --file=~/.irbrc

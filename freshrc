@@ -115,7 +115,6 @@ fresh-options --bin
   fresh twe4ked/dotfiles bin/date-iso
   fresh twe4ked/dotfiles bin/fresh-convert
   fresh twe4ked/dotfiles bin/git-author
-  fresh twe4ked/dotfiles bin/git-github-url
   fresh twe4ked/dotfiles bin/git-swap-latest
   fresh twe4ked/dotfiles bin/git-rm-tag
   fresh twe4ked/dotfiles bin/heroku-remote-add
@@ -158,6 +157,9 @@ ln -sf ~/bin/_git-pre-commit-hook ~/.git_template/hooks/pre-commit
 # setup ruby managment for ruby fun
 fresh postmodern/chruby . --file=~/.chruby/ --ref=v0.3.9
 fresh postmodern/ruby-install . --file=~/.ruby-install/ --ref=v0.6.0
+
+# setup node version manager (NVM)
+fresh creationix/nvm . --file=~/.nvm/ --ref=v0.31.0
 
 fresh_after_build() {
   if which chflags &> /dev/null; then

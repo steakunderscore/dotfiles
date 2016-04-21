@@ -1,0 +1,25 @@
+#!/bin/bash -e
+
+if [[ "$#" -gt 2 ]] || [[ "$1" = "--help" ]]; then
+  echo "usage: $(basename "$0") [line] [number]" >&2
+  exit 1
+fi
+
+unset URL
+unset FILE
+unset LINE
+
+REMOTE="$(git config --get remote.origin.url)"
+
+if [[ "$REMOTE" != *github* ]]; then
+  echo "Warning: Might not a GitHub remote"
+fi
+
+URL="$(echo "$REMOTE" | sed -E 's/.+@(.+):(.+)\.git$/https:\/\/\1\/\2/g')"
+if [[ -n "$1" ]]; then
+  FILE="/blob/$(git rev-parse --abbrev-ref HEAD)/$1"
+fi
+if [[ -n "$2" ]]; then
+  LINE="#L$2"
+fi
+echo "$URL$FILE$LINE"

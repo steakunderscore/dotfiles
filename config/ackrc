@@ -1,0 +1,12 @@
+--color
+--context=1
+--follow
+--group
+--ignore-dir=_site
+--ignore-dir=coverage
+--ignore-dir=log
+--ignore-dir=vendor/bundle
+--type-add=css=.sass,.scss
+--type-add=ruby=.haml,.hamlc,.feature,.ru,.erb
+--type-set=coffeescript=.coffee
+--type-set=markdown=.markdown,.mdown,.md

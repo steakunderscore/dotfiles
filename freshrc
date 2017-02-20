@@ -2,25 +2,17 @@
 
 fresh freshshell/fresh bin/fresh --bin
 fresh freshshell/fresh contrib/completion/fresh-completion.zsh --file=completion/_fresh
-fresh freshshell/fresh-open bin/fresh-open --bin
 
 # Config
 fresh-options --file
   fresh config/\*
-  # Not currently using ack, so remove for now.
-  #fresh twe4ked/dotfiles config/ackrc
-  fresh twe4ked/dotfiles config/pryrc
-  fresh twe4ked/dotfiles config/irb
-  fresh jasoncodes/dotfiles config/inputrc
-  fresh jasoncodes/dotfiles config/psqlrc
 fresh-options
-fresh henrik/dotfiles rubyrc --file=~/.pryrc --filter='cat; echo include RubyRC'
 
 # i3
 fresh config/i3/config.erb --file=~/.i3/config --filter="erb"
 fresh config/i3/statusbar-conky.conf --file=~/.i3/statusbar-conky.conf
 fresh config/i3/statusbar-conky-laptop.conf --file=~/.i3/statusbar-conky-laptop.conf
-fresh peter-vaczi/config_stuff config/i3/conky-wrapper.sh --bin=~/.i3/conky-wrapper.sh
+fresh config/i3/conky-wrapper.sh --bin=~/.i3/conky-wrapper.sh
 
 # Zsh
 fresh-options --file=~/.zshrc --marker
@@ -166,9 +158,6 @@ ln -sf ~/bin/_git-pre-commit-hook ~/.git_template/hooks/pre-commit
 # setup ruby managment for ruby fun
 fresh postmodern/chruby . --file=~/.chruby/ --ref=v0.3.9
 fresh postmodern/ruby-install . --file=~/.ruby-install/ --ref=v0.6.0
-
-# setup node version manager (NVM)
-# fresh creationix/nvm . --file=~/.nvm/ --ref=v0.30.2
 
 fresh_after_build() {
   if which chflags &> /dev/null; then

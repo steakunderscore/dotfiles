@@ -104,7 +104,8 @@ fresh twe4ked/dotfiles shell/functions/pubkey.sh
 # irb
 fresh-options --file=~/.irbrc
   fresh config/irb/encoding.rb
-  fresh jasoncodes/dotfiles config/irbrc
+  fresh config/irb/rubyrc.rb
+  fresh config/irb/irbrc.rb
   fresh config/irb/prompt.rb
 fresh-options
 

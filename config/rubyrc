@@ -18,7 +18,14 @@ module RubyRC
       b.report {repetitions.times &block}
     end
     nil
-  rescue LoadError => e                                                           
+  rescue LoadError => e
     raise unless e.message.include?('benchmark')
+  end
+end
+
+# Helper to show methods that are defined directly on an object
+class Object
+  def local_methods
+    (methods - self.class.superclass.instance_methods).sort
   end
 end

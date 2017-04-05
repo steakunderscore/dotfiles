@@ -19,6 +19,8 @@
   renames = true
 [push]
   default = current
+[fetch]
+  prune = true
 [init]
   templatedir = ~/.git_template
 [merge]
@@ -34,7 +36,7 @@
   rb = rebase
   rc = rebase --continue
   rs = rebase --skip
-  br = branch -vv
+  br = branch -vva
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   rp = remote prune
   statsu = status

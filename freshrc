@@ -8,6 +8,9 @@ fresh-options --file
   fresh config/\*
 fresh-options
 
+# bundler
+fresh config/bundler/config --file=~/.bundler/config
+
 # i3
 fresh config/i3/config.erb --file=~/.i3/config --filter="erb"
 fresh config/i3/statusbar-conky.conf --file=~/.i3/statusbar-conky.conf

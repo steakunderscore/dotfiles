@@ -160,9 +160,6 @@ ln -sf ~/bin/_git-pre-commit-hook ~/.git_template/hooks/pre-commit
 fresh postmodern/chruby . --file=~/.chruby/ --ref=v0.3.9
 fresh postmodern/ruby-install . --file=~/.ruby-install/ --ref=v0.6.0
 
-# setup node version manager (NVM)
-fresh creationix/nvm . --file=~/.nvm/ --ref=v0.31.0
-
 fresh_after_build() {
   if which chflags &> /dev/null; then
     chflags hidden ~/bin

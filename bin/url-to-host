@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+
+import signal
+import sys
+import re
+from urlparse import urlparse
+
+def signal_handler(signal, frame):
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
+
+if len(sys.argv) < 2:
+  sys.stderr.write("Usage: url-to-host http://example.com\n")
+  exit(1)
+
+pattern = re.compile(r":", re.IGNORECASE)
+host = sys.argv[1]
+pattern = re.compile(r":", re.IGNORECASE)
+if pattern.search(host):
+  host = urlparse(sys.argv[1]).hostname
+print(host)
+
+exit(0)

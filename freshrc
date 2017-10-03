@@ -149,6 +149,7 @@ fresh sivel/speedtest-cli speedtest.py --bin=~/bin/speedtest
 fresh-options --file=~/.gitignore --marker
   fresh github/gitignore Global/Linux.gitignore
   fresh github/gitignore Global/Vim.gitignore
+  fresh git/gitignore
 fresh-options
 
 # git hooks

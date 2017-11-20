@@ -5,6 +5,7 @@ alias internet\?="ping 8.8.8.8"
 alias b="bundle check || bundle"
 alias dev="cd $HOME/Dev"
 alias serve="python -m SimpleHTTPServer"
+alias task="task-git --task-git-push"
 
 # cat with highlight
 alias cah="pygmentize -g"

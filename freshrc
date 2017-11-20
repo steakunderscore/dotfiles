@@ -99,7 +99,7 @@ fresh jasoncodes/dotfiles shell/functions/realpath.sh
 fresh markryall/dotfiles shell/aliases/dvcs.sh
 
 fresh shell/exports.sh
-fresh twe4ked/dotfiles shell/aliases/aliases.sh
+fresh shell/aliases/aliases.sh
 fresh twe4ked/dotfiles shell/functions/hitch.sh
 fresh twe4ked/dotfiles shell/functions/h.sh
 fresh twe4ked/dotfiles shell/functions/pubkey.sh

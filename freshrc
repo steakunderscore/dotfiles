@@ -9,7 +9,7 @@ fresh-options --file
 fresh-options
 
 # bundler
-fresh config/bundler/config --file=~/.bundler/config
+fresh config/bundle/config --file=~/.bundle/config
 
 # i3
 fresh config/i3/config.erb --file=~/.i3/config --filter="erb"

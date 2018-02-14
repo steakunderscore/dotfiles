@@ -1,2 +1,4 @@
 tags.lock
 tags.temp
+
+bin/rails-dev

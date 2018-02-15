@@ -139,7 +139,7 @@ fresh-options --bin
   fresh garybernhardt/selecta selecta
   fresh garybernhardt/dotfiles bin/run-command-on-git-revisions
   fresh pengwynn/dotfiles bin/git-pr
-  fresh git/git contrib/diff-highlight/diff-highlight
+  fresh git/git contrib/diff-highlight/diff-highlight --ref=3dbfe2b8ae94cbdae5f3d32581aedaa5510fdc87
 
   fresh bin/\*
 fresh-options
@@ -157,16 +157,8 @@ fresh https://gist.github.com/5431107.git pre-commit --bin=~/bin/_git-pre-commit
 mkdir -p ~/.git_template/hooks/
 ln -sf ~/bin/_git-pre-commit-hook ~/.git_template/hooks/pre-commit
 
-# setup ruby managment for ruby fun
-fresh postmodern/chruby . --file=~/.chruby/ --ref=v0.3.9
-fresh postmodern/ruby-install . --file=~/.ruby-install/ --ref=v0.6.0
-
 fresh_after_build() {
   if which chflags &> /dev/null; then
     chflags hidden ~/bin
-  fi
-
-  if [[ ! -L ~/bin/diff-highlight ]]; then
-    ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight ~/bin/diff-highlight
   fi
 }

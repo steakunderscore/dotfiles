@@ -1,7 +1,8 @@
-export DOTFILES=~/.dotfiles                 # here
-export ARCHFLAGS='-arch x86_64'             # archflags
-export PATH=$HOME/bin:/usr/local/bin:$PATH  # path settings
+export DOTFILES=~/.dotfiles                     # here
+export ARCHFLAGS='-arch x86_64'                 # archflags
+export PATH=$HOME/bin:/usr/local/bin:$PATH      # path settings
 export GH_LOGIN="$(git config github.username)" # used by git-go
+export GITHUB_URL="$(git config github.url)"    # used by gist
 
 path_add() {
   if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then

@@ -48,10 +48,6 @@ fresh-options --file=~/.zshrc --marker
   fresh akatov/dotfiles zshrc/dedup-path --ref=55e80fe
 fresh-options
 
-# TODO Should I have these in mine?
-#fresh freshshell/fresh contrib/source-build.sh --file=~/.bash_profile
-#fresh freshshell/fresh contrib/source-build.sh --file=~/.bashrc
-
 # See reason above
 fresh zsh-users/zsh-completions src/_ack --file=completion/_ack
 fresh twe4ked/dotfiles shell/zsh/completions/_gh --file=completion/_gh
@@ -96,7 +92,6 @@ fresh jasoncodes/dotfiles shell/config/filters.sh
 fresh jasoncodes/dotfiles shell/config/pager.sh
 fresh jasoncodes/dotfiles shell/config/heroku.sh
 fresh jasoncodes/dotfiles shell/functions/realpath.sh
-fresh markryall/dotfiles shell/aliases/dvcs.sh
 
 fresh shell/exports.sh
 fresh shell/aliases/aliases.sh

@@ -25,7 +25,7 @@ d() {
 }
 
 p() {
-  cd "$PROJECTS/$(find "$PROJECTS" -type d -maxdepth 3 -name .git | sed 's#/\.git$##' | sed "s#^$PROJECTS/##" | selecta)"
+  cd "$PROJECTS/$(find "$PROJECTS" -maxdepth 3 -name .git | sed 's#/\.git$##' | sed "s#^$PROJECTS/##" | selecta)"
 }
 
 # source dotfiles

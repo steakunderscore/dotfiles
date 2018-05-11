@@ -61,3 +61,10 @@ Pry.hooks.add_hook :after_session, :rails do |output, target, pry|
   ActiveRecord::Base.logger = org_logger_active_record if org_logger_active_record
   Rails.logger = org_logger_rails if org_logger_rails
 end
+
+if defined?(PryByebug)
+  Pry.commands.alias_command 'c', 'continue'
+  Pry.commands.alias_command 's', 'step'
+  Pry.commands.alias_command 'n', 'next'
+  Pry.commands.alias_command 'f', 'finish'
+end

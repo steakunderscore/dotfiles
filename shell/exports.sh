@@ -19,7 +19,3 @@ if type go >/dev/null 2>&1; then
 fi
 
 export PROJECTS=~/Dev
-
-# used by `dvcs` alias
-export GH_BASE="$PROJECTS"
-export GH_USER="$GH_LOGIN"

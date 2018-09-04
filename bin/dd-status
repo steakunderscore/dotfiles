@@ -1,3 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
+# Get dd to print it's statuses each second
 
 while true ; do sleep 1 ; pkill -USR1 --newest --exact dd ; done

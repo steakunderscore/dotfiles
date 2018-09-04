@@ -11,6 +11,9 @@ fresh-options
 # bundler
 fresh config/bundle/config --file=~/.bundle/config
 
+# termite
+fresh config/config/termite/config --file=~/.config/termite/config
+
 # i3
 fresh config/i3/config.erb --file=~/.i3/config --filter="erb"
 fresh config/i3/statusbar-conky.conf --file=~/.i3/statusbar-conky.conf

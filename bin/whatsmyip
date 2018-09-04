@@ -1,0 +1,4 @@
+#!/bin/sh
+# Prints the public IP address used for the web request
+
+curl --silent checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'

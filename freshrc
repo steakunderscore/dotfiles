@@ -86,20 +86,13 @@ fresh vim/spell --file=~/.vim/spell/
 fresh junegunn/vim-plug plug.vim --file=~/.vim/autoload/plug.vim
 
 # Shell
-fresh jasoncodes/dotfiles shell/aliases/rails.sh
-fresh jasoncodes/dotfiles shell/aliases/ruby.sh
-
-fresh jasoncodes/dotfiles shell/editor.sh
-fresh jasoncodes/dotfiles shell/config/filters.sh
-fresh jasoncodes/dotfiles shell/config/pager.sh
-fresh jasoncodes/dotfiles shell/config/heroku.sh
-fresh jasoncodes/dotfiles shell/functions/realpath.sh
-
-fresh shell/exports.sh
-fresh shell/aliases/aliases.sh
+fresh shell/aliases/\*
 fresh twe4ked/dotfiles shell/functions/hitch.sh
 fresh twe4ked/dotfiles shell/functions/h.sh
 fresh twe4ked/dotfiles shell/functions/pubkey.sh
+fresh shell/functions/\*
+fresh shell/config/\*
+fresh shell/\*
 
 # irb
 fresh-options --file=~/.irbrc

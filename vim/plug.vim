@@ -27,11 +27,9 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'kchmck/vim-coffee-script'
 Plug 'nelstrom/vim-textobj-rubyblock' | Plug 'rking/vim-ruby-refactoring'
-Plug 'slim-template/vim-slim'
-Plug 'tpope/vim-cucumber'
-Plug 'tpope/vim-haml'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-rails'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " colorschemes
 Plug 'AlxHnr/clear_colors'

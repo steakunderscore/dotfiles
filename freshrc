@@ -31,9 +31,6 @@ fresh-options --file=~/.zshrc --marker
 
   # Include all common shell config
   fresh freshshell/fresh contrib/source-build.sh
-
-  # de-duplicate PATH
-  fresh akatov/dotfiles zshrc/dedup-path --ref=55e80fe
 fresh-options
 
 # See reason above

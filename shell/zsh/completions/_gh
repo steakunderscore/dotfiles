@@ -1,0 +1,7 @@
+#compdef gh
+
+if [[ $CURRENT = 2 ]]; then
+  _values 'repositories' $(
+    find "$PROJECTS/github" -mindepth 1 -maxdepth 2 -type d | sed "s#$PROJECTS/github/##"
+  )
+fi

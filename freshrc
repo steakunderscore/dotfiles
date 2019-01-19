@@ -22,25 +22,13 @@ fresh config/i3/conky-wrapper.sh --bin=~/.i3/conky-wrapper.sh
 
 # Zsh
 fresh-options --file=~/.zshrc --marker
-  fresh twe4ked/dotfiles shell/zsh/completion.zsh
-  fresh twe4ked/dotfiles shell/zsh/prompt.zsh
-  fresh twe4ked/dotfiles shell/zsh/title.zsh
-  fresh twe4ked/dotfiles shell/zsh/zshrc
-  fresh shell/zsh/keybindings.zsh
-  fresh twe4ked/dotfiles shell/zsh/selecta.zsh
+  fresh shell/zsh/\*
 
   fresh rupa/z z.sh
   fresh robbyrussell/oh-my-zsh lib/grep.zsh
   fresh robbyrussell/oh-my-zsh lib/git.zsh
   fresh robbyrussell/oh-my-zsh plugins/git-flow/git-flow.plugin.zsh
   fresh bjeanes/dot-files shells/zsh/lib/completion-waiting-dots.zsh
-
-  #TODO Options to use these from https://github.com/jloveland/dotfiles/blob/0e55f40daa67363f93734c9f458472235a7850f6/freshrc#L32
-  #fresh robbyrussell/oh-my-zsh plugins/git/git.plugin.zsh
-  #fresh robbyrussell/oh-my-zsh plugins/git-remote-branch/git-remote-branch.plugin.zsh
-  #fresh robbyrussell/oh-my-zsh plugins/ruby/ruby.plugin.zsh
-  #fresh robbyrussell/oh-my-zsh plugins/gem/gem.plugin.zsh
-  #fresh robbyrussell/oh-my-zsh plugins/jsontools/jsontools.plugin.zsh
 
   # Include all common shell config
   fresh freshshell/fresh contrib/source-build.sh
@@ -50,7 +38,7 @@ fresh-options --file=~/.zshrc --marker
 fresh-options
 
 # See reason above
-fresh twe4ked/dotfiles shell/zsh/completions/_gh --file=completion/_gh
+fresh shell/zsh/completions/_gh --file=completion/_gh
 fresh thoughtbot/dotfiles zsh/completion/_ag --file=completion/_ag
 
 fresh zsh-users/zsh-syntax-highlighting . --file=~/.zsh/plugins/zsh-syntax-highlighting/
@@ -66,6 +54,7 @@ fresh-options --file=~/.vimrc --marker='"'
   fresh vim/plugin_config/\*
   fresh vim/config/\*
   fresh vim/vimrc
+
   fresh jasoncodes/dotfiles vim/mappings/indent.vim
   fresh jasoncodes/dotfiles vim/mappings/pasteboard.vim
   fresh jasoncodes/dotfiles vim/mappings/whitespace.vim --filter=filter_vundle_lines
@@ -85,9 +74,6 @@ fresh junegunn/vim-plug plug.vim --file=~/.vim/autoload/plug.vim
 
 # Shell
 fresh shell/aliases/\*
-fresh twe4ked/dotfiles shell/functions/hitch.sh
-fresh twe4ked/dotfiles shell/functions/h.sh
-fresh twe4ked/dotfiles shell/functions/pubkey.sh
 fresh shell/functions/\*
 fresh shell/config/\*
 fresh shell/\*
@@ -101,18 +87,6 @@ fresh-options
 
 # bin
 fresh-options --bin
-  fresh twe4ked/dotfiles bin/add-keys
-  fresh twe4ked/dotfiles bin/build_status
-  fresh twe4ked/dotfiles bin/date-iso
-  fresh twe4ked/dotfiles bin/fresh-convert
-  fresh twe4ked/dotfiles bin/git-author
-  fresh twe4ked/dotfiles bin/git-swap-latest
-  fresh twe4ked/dotfiles bin/git-rm-tag
-  fresh twe4ked/dotfiles bin/heroku-remote-add
-  fresh twe4ked/dotfiles bin/psg
-  fresh twe4ked/dotfiles bin/rubygems-github-urls
-  fresh twe4ked/dotfiles bin/squash-whitespace
-  fresh twe4ked/dotfiles bin/whiteboard-clean
   fresh twe4ked/catacomb bin/catacomb
   fresh twe4ked/twitter-whois bin/twitter-whois
 

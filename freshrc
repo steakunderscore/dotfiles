@@ -24,7 +24,6 @@ fresh config/i3/conky-wrapper.sh --bin=~/.i3/conky-wrapper.sh
 fresh-options --file=~/.zshrc --marker
   fresh shell/zsh/\*
 
-  fresh rupa/z z.sh
   fresh robbyrussell/oh-my-zsh lib/grep.zsh
   fresh robbyrussell/oh-my-zsh lib/git.zsh
   fresh robbyrussell/oh-my-zsh plugins/git-flow/git-flow.plugin.zsh
@@ -53,7 +52,6 @@ fresh-options --file=~/.vimrc --marker='"'
 
   fresh vim/mappings/\*
   fresh vim/plugins/\*
-  fresh hackling/dotfiles vim/keybindings/filename-to-clipboard.vim
 fresh-options
 fresh vim/colors --file=~/.vim/colors/
 fresh vim/spell --file=~/.vim/spell/
@@ -74,17 +72,11 @@ fresh-options
 
 # bin
 fresh-options --bin
-  fresh twe4ked/catacomb bin/catacomb
-  fresh twe4ked/twitter-whois bin/twitter-whois
-
   fresh garybernhardt/selecta selecta
-  fresh garybernhardt/dotfiles bin/run-command-on-git-revisions
-  fresh pengwynn/dotfiles bin/git-pr
   fresh git/git contrib/diff-highlight/diff-highlight --ref=3dbfe2b8ae94cbdae5f3d32581aedaa5510fdc87
 
   fresh bin/\*
 fresh-options
-fresh sivel/speedtest-cli speedtest.py --bin=~/bin/speedtest
 
 # git
 fresh-options --file=~/.gitignore --marker
@@ -92,14 +84,3 @@ fresh-options --file=~/.gitignore --marker
   fresh github/gitignore Global/Vim.gitignore
   fresh git/gitignore
 fresh-options
-
-# git hooks
-fresh https://gist.github.com/5431107.git pre-commit --bin=~/bin/_git-pre-commit-hook
-mkdir -p ~/.git_template/hooks/
-ln -sf ~/bin/_git-pre-commit-hook ~/.git_template/hooks/pre-commit
-
-fresh_after_build() {
-  if which chflags &> /dev/null; then
-    chflags hidden ~/bin
-  fi
-}

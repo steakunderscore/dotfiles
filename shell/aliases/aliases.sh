@@ -4,24 +4,12 @@ alias history="fc -l 1"
 alias internet\?="ping 8.8.8.8"
 alias dev="cd $HOME/Dev"
 alias serve="python3 -m http.server"
-alias task="task-git --task-git-push"
 
 # cat with highlight
 alias cah="pygmentize -g"
 
-# highest rated results first
-alias z="_z -r 2>&1"
-
 # copy with a progress bar.
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
-
-d() {
-  if [[ -n "$1" ]]; then
-    cd "+$1"
-  else
-    dirs -v
-  fi
-}
 
 p() {
   cd "$PROJECTS/$(find "$PROJECTS" -maxdepth 5 -name .git | sed 's#/\.git$##' | sed "s#^$PROJECTS/##" | selecta)"

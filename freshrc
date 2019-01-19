@@ -42,7 +42,6 @@ fresh-options --file=~/.vimrc --marker='"'
   fresh vim/leader.vim
   fresh vim/plug.vim
   fresh vim/plugins/\*
-  fresh vim/plugin_config/\*
   fresh vim/config/\*
   fresh vim/functions.vim
   fresh vim/vimrc

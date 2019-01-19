@@ -42,8 +42,7 @@ fresh-options --file=~/.zshrc --marker
   #fresh robbyrussell/oh-my-zsh plugins/gem/gem.plugin.zsh
   #fresh robbyrussell/oh-my-zsh plugins/jsontools/jsontools.plugin.zsh
 
-  fresh zshrc/\*
-
+  # Include all common shell config
   fresh freshshell/fresh contrib/source-build.sh
 
   # de-duplicate PATH

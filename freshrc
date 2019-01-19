@@ -72,11 +72,12 @@ fresh-options
 
 # bin
 fresh-options --bin
-  fresh garybernhardt/selecta selecta
+  fresh garybernhardt/selecta selecta --ref=1ac148dac9b36157efc4312d42d49b0d6175ba4d # v0.0.7
   fresh git/git contrib/diff-highlight/diff-highlight --ref=3dbfe2b8ae94cbdae5f3d32581aedaa5510fdc87
 
   fresh bin/\*
 fresh-options
+fresh sivel/speedtest-cli speedtest.py --bin=~/bin/speedtest --ref=72ed585c6f9d19b39a80e0c9364592095d070f62 # v2.0.2
 
 # git
 fresh-options --file=~/.gitignore --marker

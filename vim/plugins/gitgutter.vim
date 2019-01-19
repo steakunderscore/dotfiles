@@ -1,5 +1,5 @@
-nmap ]d <Plug>GitGutterNextHunk
-nmap [d <Plug>GitGutterPrevHunk
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
 
 " always display the sign column
 autocmd BufEnter * sign define dummy

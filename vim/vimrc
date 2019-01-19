@@ -47,8 +47,5 @@ syntax enable
 set background=dark
 colorscheme jellybeans_custom
 
-" Use % to jump to matching begin/end of blocks as well as brackets/parens
-runtime macros/matchit.vim
-
 " http://tim.theenchanter.com/2008/07/crontab-temp-file-must-be-edited-in.html
 set backupskip=/tmp/*,/private/tmp/*"

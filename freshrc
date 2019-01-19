@@ -37,21 +37,17 @@ fresh shell/zsh/completion --file=completion/
 
 fresh zsh-users/zsh-syntax-highlighting . --file=~/.zsh/plugins/zsh-syntax-highlighting/
 
-filter_vundle_lines() {
-  grep -v ^Bundle
-}
-
 # Vim
 fresh-options --file=~/.vimrc --marker='"'
   fresh vim/leader.vim
   fresh vim/plug.vim
+  fresh vim/plugins/\*
   fresh vim/plugin_config/\*
   fresh vim/config/\*
   fresh vim/functions.vim
   fresh vim/vimrc
 
   fresh vim/mappings/\*
-  fresh vim/plugins/\*
 fresh-options
 fresh vim/colors --file=~/.vim/colors/
 fresh vim/spell --file=~/.vim/spell/

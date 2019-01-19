@@ -23,20 +23,10 @@ Plug 'tpope/vim-vinegar'
 Plug 'twe4ked/vim-diff-toggle'
 
 " language
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'kchmck/vim-coffee-script'
-Plug 'nelstrom/vim-textobj-rubyblock' | Plug 'rking/vim-ruby-refactoring'
 Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-rails'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " colorschemes
-Plug 'AlxHnr/clear_colors'
-Plug 'altercation/vim-colors-solarized'
-Plug 'vim-scripts/bclear'
 Plug 'nanotech/jellybeans.vim'
-Plug 'noahfrederick/Hemisu'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
 call plug#end()

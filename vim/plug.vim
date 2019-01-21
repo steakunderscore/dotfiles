@@ -16,8 +16,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 
 " language
-Plug 'tpope/vim-markdown'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'sheerun/vim-polyglot'
 
 " colorschemes
 Plug 'nanotech/jellybeans.vim'

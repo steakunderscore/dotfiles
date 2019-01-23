@@ -9,8 +9,6 @@
 [core]
   editor = vim
   excludesfile = ~/.gitignore
-[git-up "bundler"]
-  check = true
 [rebase]
   autosquash = true
 [color "diff"]
@@ -21,8 +19,6 @@
   default = current
 [fetch]
   prune = true
-[init]
-  templatedir = ~/.git_template
 [merge]
   log = true
   conflictstyle = diff3

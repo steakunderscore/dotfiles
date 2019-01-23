@@ -23,7 +23,6 @@ fresh-options --file=~/.zshrc --marker
 
   fresh robbyrussell/oh-my-zsh lib/grep.zsh
   fresh robbyrussell/oh-my-zsh lib/git.zsh
-  fresh robbyrussell/oh-my-zsh plugins/git-flow/git-flow.plugin.zsh
 
   # Include all common shell config
   fresh freshshell/fresh contrib/source-build.sh

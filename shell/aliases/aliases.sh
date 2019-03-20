@@ -4,6 +4,7 @@ alias history="fc -l 1"
 alias internet\?="ping 8.8.8.8"
 alias dev="cd $HOME/Dev"
 alias serve="python3 -m http.server"
+alias k='kubectl'
 
 # cat with highlight
 alias cah="pygmentize -g"

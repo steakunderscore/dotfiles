@@ -10,3 +10,5 @@
 --type-add=ruby=.haml,.hamlc,.feature,.ru,.erb
 --type-set=coffeescript=.coffee
 --type-set=markdown=.markdown,.mdown,.md
+--ignore-dir=.plz-cache/
+--ignore-dir=plz-out/

@@ -1,6 +1,11 @@
 " turn on spell check in Git commits.
 autocmd FileType gitcommit set spell
 
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+
+" Spell-check Markdown files
+autocmd FileType markdown setlocal spell
+
 " save on FocusLost
 autocmd FocusLost * nested :silent! wall
 

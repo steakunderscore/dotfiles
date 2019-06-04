@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Highlight a string from stdin
+
+if [ $# -ne 1 ] || [ -z "$1" ]; then
+  echo "usage: $(basename "$0") regex" >&2
+  exit 1
+fi
+
+grep -E --color=always -e "$1|$"

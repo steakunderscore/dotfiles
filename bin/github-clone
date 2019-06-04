@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+# Lets clone from github with ease
+#
+# argv should be one of:
+# - https://github.com/USERNAME/REPOSITORY
+# - https://github.com/USERNAME/REPOSITORY.git
+# - git@github.com:USERNAME/REPOSITORY.git
+# - USERNAME/REPOSITORY
+#
+# result should be
+# 1. new dir made in $PROJECTS/github.com/USERNAME/REPOSITORY
+# 2. code cloned from github, using https
+# 3. push URL set to git@github.com:USERNAME/REPOSITORY.git
+
+require 'uri'
+require 'fileutils'
+
+if ARGV.delete('-h') || ARGV.delete('--help') || ARGV.length == 0
+  print "Usage: github-clone (github/path|github.com/path|git@github.com/path)\n" \
+        "Options:\n" # \
+        # "  --http  Clone with http\n"
+  exit(0)
+end
+
+projects = File.expand_path(ENV['PROJECTS'] || '~/Dev')
+
+# USE_SSH=true
+# if ARGV.delete('--http')
+#   USE_SSH=false
+# end
+
+ARGV.each do |repo|
+  uri = URI(repo)
+  uri.host = 'github.com'
+  uri.scheme = 'https'
+  uri.path = "/#{uri.path}" if uri.path[0] != '/'
+  uri.path = "#{uri.path}.git" if uri.path[-4..-1] != '.git'
+  gh_user = uri.path.split('/')[0]
+  gh_project = uri.path.split('/')[1..-1].join('/')[0..-5]
+  dir = File.join(projects, uri.host, gh_user)
+  project_dir = File.join(projects, uri.host, gh_user, gh_project)
+  p FileUtils.mkdir_p(dir)
+  p `git clone -o upstream #{uri} #{project_dir}`
+  p `git --git-dir=#{project_dir}/.git remote set-url --push upstream no_push`
+end

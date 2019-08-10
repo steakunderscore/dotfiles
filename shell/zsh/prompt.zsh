@@ -91,6 +91,6 @@ local git_stashes='$(git_stash)'
 local bg_job='%{${fg_bold[black]}%}$(prompt_bg_job)%{${reset_color}%}'
 local aws='%{${fg_bold[black]}%}$(aws_vault)%{${reset_color}%}'
 
-PROMPT="$cwd$usr$bg_job$git_author$git$git_stashes$aws$colored_char"
+PROMPT='$(kube_ps1)'"$cwd$usr$bg_job$git_author$git$git_stashes$aws$colored_char"
 PROMPT2=$colored_char
 RPROMPT2='[%_]'

@@ -25,6 +25,7 @@
   tool = vimdiff
 [mergetool]
   prompt = false
+  keepBackup = false
 [alias]
   co = checkout
   p = push

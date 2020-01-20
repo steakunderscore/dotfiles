@@ -52,7 +52,6 @@ fresh shell/\*
 
 # bin
 fresh-options --bin
-  fresh garybernhardt/selecta selecta --ref=1ac148dac9b36157efc4312d42d49b0d6175ba4d # v0.0.7
   fresh git/git contrib/diff-highlight/diff-highlight --ref=3dbfe2b8ae94cbdae5f3d32581aedaa5510fdc87
 
   fresh bin/\*

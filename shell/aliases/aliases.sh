@@ -2,7 +2,7 @@ alias ls="ls -F"
 alias ll="ls -lGFh"
 alias history="fc -l 1"
 alias internet\?="ping 8.8.8.8"
-alias dev="cd $HOME/Dev"
+alias dev="screen -RD development"
 alias serve="python3 -m http.server"
 alias k='kubectl'
 

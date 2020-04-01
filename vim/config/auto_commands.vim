@@ -6,6 +6,9 @@ autocmd BufRead,BufNewFile *.md set filetype=markdown
 " Spell-check Markdown files
 autocmd FileType markdown setlocal spell
 
+" Wrap Markdown files
+autocmd FileType markdown set wrap
+
 " save on FocusLost
 autocmd FocusLost * nested :silent! wall
 

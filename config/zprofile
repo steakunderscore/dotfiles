@@ -1,0 +1,2 @@
+# Make sure we are loading profile
+[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'

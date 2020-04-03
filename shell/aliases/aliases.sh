@@ -3,6 +3,7 @@ alias ll="ls -lGFh"
 alias history="fc -l 1"
 alias internet\?="ping 8.8.8.8"
 alias dev="screen -RD development"
+alias build="screen -RD build"
 alias serve="python3 -m http.server"
 alias k='kubectl'
 

@@ -76,12 +76,7 @@ function zle-keymap-select() {
 }
 zle -N zle-keymap-select
 
-if [[ $(hostname -s) = "caladan" ]]; then
-  local char="λ "
-else
-  local char="» "
-fi
-
+local char="» "
 local cwd='%{${fg_bold[green]}%}$(prompt_pwd)%{${reset_color}%}'
 local usr='%{${fg[yellow]}%}$(user_hostname)%{${reset_color}%}'
 local colored_char='%(?,%F{cyan}$char,%F{red}$char)%f'

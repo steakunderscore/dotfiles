@@ -17,6 +17,12 @@ fresh config/i3/statusbar-conky.conf --file=~/.i3/statusbar-conky.conf
 fresh config/i3/statusbar-conky-laptop.conf --file=~/.i3/statusbar-conky-laptop.conf
 fresh config/i3/conky-wrapper.sh --bin=~/.i3/conky-wrapper.sh
 
+# sway
+fresh config/config/sway/config --file=~/.config/sway/config
+
+# mako
+fresh config/config/mako/config --file=~/.config/mako/config
+
 # Zsh
 fresh-options --file=~/.zshrc --marker
   fresh shell/zsh/\*

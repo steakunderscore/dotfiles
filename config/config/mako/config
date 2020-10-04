@@ -1,0 +1,10 @@
+# Set a reasonable default timeout
+default-timeout=10000
+
+# So we can distinguish notification levels
+[urgency=low]
+border-color=#98971a
+[urgency=normal]
+border-color=#4C7899
+[urgency=high]
+border-color=#cc241d

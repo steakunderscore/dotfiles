@@ -41,7 +41,7 @@
   scrub = clean -dxf
   push = push --recurse-submodules=check
   hunt = log --after='48 hours ago' --author
-  work = "!sh -c 'git checkout -b bug/$0 origin/master'"
+  work = "!sh -c 'git checkout -b $0 origin/master'"
   ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ -o .gitignore ;}; gi"
 [branch]
   autosetuprebase = always

@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# Script to fix remote terminals as they don't like that I use alacritty
+#
+# This generates term info locally, copies it to the remote host then adds it
+# to the local profile.
+
+set -euo pipefail
+
+if [ -z ${1+x} ]
+then
+  echo "Usage: $0 <ssh-remote>"
+  exit 1
+fi
+
+remote=$1
+terminfofile="$(mktemp)"
+
+# export Termite's Terminfo
+infocmp > "${terminfofile}"
+
+# copy file to the remote host
+scp "${terminfofile}" "${remote}:${terminfofile}"
+
+# import Terminfo for current user
+ssh ${remote} tic -x ${terminfofile}
+
+# tidyup remote and local
+ssh ${remote} rm ${terminfofile}
+rm ${terminfofile}
+
+echo "Go ahead and ssh your life away"

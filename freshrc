@@ -19,9 +19,14 @@ fresh config/i3/conky-wrapper.sh --bin=~/.i3/conky-wrapper.sh
 
 # sway
 fresh config/config/sway/config --file=~/.config/sway/config
+fresh config/config/systemd/user/sway.service --file=~/.config/systemd/user/sway.service
+
+# ssh agent
+fresh config/config/systemd/user/ssh-agent.service --file=~/.config/systemd/user/ssh-agent.service
 
 # mako
 fresh config/config/mako/config --file=~/.config/mako/config
+fresh config/config/systemd/user/mako.service --file=~/.config/systemd/user/mako.service
 
 # Zsh
 fresh-options --file=~/.zshrc --marker

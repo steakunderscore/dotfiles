@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+set -euo pipefail
+
+# Branch that's currently checked-out
+current_branch=$(git branch | grep \* | cut -d ' ' -f2)
+
+# Fetch all updates in a single request
+git fetch --all --tags
+
+# Update all my branches
+for branch in $(git for-each-ref --format '%(refname:short)' 'refs/heads/*')
+do
+  git checkout "${branch}"
+  git rebase
+done
+
+# Now switch to origional branch as that's likey where I want to get back to.
+git checkout "${current_branch}"

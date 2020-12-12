@@ -1,3 +1,9 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
 ### Variables
 #
 # Set mod to be logo key
@@ -134,6 +140,9 @@ input * xkb_layout gb
 #
 # Layout stuff:
 #
+    # Default to using tabbed layout
+    workspace_layout tabbed
+
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.

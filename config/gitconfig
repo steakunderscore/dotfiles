@@ -28,7 +28,6 @@
   keepBackup = false
 [alias]
   co = checkout
-  p = push
   ci = commit
   rb = rebase
   rc = rebase --continue
@@ -41,7 +40,7 @@
   scrub = clean -dxf
   push = push --recurse-submodules=check
   hunt = log --after='48 hours ago' --author
-  work = "!sh -c 'git checkout -b $0 origin/master'"
+  work = checkout origin/master -b
   ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ -o .gitignore ;}; gi"
 [branch]
   autosetuprebase = always

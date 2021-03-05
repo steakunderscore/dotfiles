@@ -2,4 +2,4 @@
 #
 # Remove branches which have been merged in to the current branch
 
-git branch --merged| egrep -v "(^\*|master|main|trunk|dev)$" | xargs git branch -d
+git branch --merged | egrep -v "^(\* .*|  (master|main|trunk|dev))$" | xargs --no-run-if-empty git branch -d

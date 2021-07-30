@@ -34,13 +34,13 @@
   rs = rebase --skip
   br = branch -vva
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  rp = remote prune
   statsu = status
   st = status
-  scrub = clean -dxf
   push = push --recurse-submodules=check
   hunt = log --after='48 hours ago' --author
   work = checkout origin/master -b
+  wip = !git add --all; git ci -m WIP
+  scrub = clean -dxf
   ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ -o .gitignore ;}; gi"
 [branch]
   autosetuprebase = always

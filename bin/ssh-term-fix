@@ -4,6 +4,7 @@
 #
 # This generates term info locally, copies it to the remote host then adds it
 # to the local profile.
+# TODO support ipv6
 
 set -euo pipefail
 
@@ -13,7 +14,7 @@ then
   exit 1
 fi
 
-remote=$1
+remote="${1}"
 terminfofile="$(mktemp)"
 
 # export Termite's Terminfo
@@ -23,10 +24,10 @@ infocmp > "${terminfofile}"
 scp "${terminfofile}" "${remote}:${terminfofile}"
 
 # import Terminfo for current user
-ssh ${remote} tic -x ${terminfofile}
+ssh "${remote}" tic -x "${terminfofile}"
 
 # tidyup remote and local
-ssh ${remote} rm ${terminfofile}
-rm ${terminfofile}
+ssh "${remote}" rm "${terminfofile}"
+rm "${terminfofile}"
 
 echo "Go ahead and ssh your life away"

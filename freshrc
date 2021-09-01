@@ -62,7 +62,7 @@ fresh-options --bin
 
   fresh bin/\*
 fresh-options
-fresh sivel/speedtest-cli speedtest.py --bin=~/bin/speedtest --ref=72ed585c6f9d19b39a80e0c9364592095d070f62 # v2.0.2
+fresh sivel/speedtest-cli speedtest.py --bin=~/bin/speedtest --ref=42e96b13dda2afabbcec2622612d13495a415caa # v2.1.3
 
 # git
 fresh-options --file=~/.gitignore --marker

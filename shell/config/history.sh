@@ -1,5 +1,5 @@
 # awesome history tracking
-export HISTSIZE=100000
+export HISTSIZE=75000
 export HISTFILESIZE=100000
 export HISTCONTROL=ignoreboth
 export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S  "

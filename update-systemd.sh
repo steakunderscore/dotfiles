@@ -2,4 +2,6 @@
 # Can't use freshrc to manage systemd units as systemd can't handle freshrc's
 # symlinks.
 
-cp -a systemd/user/* "${HOME}"/.config/systemd/user/
+mkdir -p "${HOME}/.config/systemd/user/"
+
+cp -a "${HOME}"/.dotfiles/systemd/user/* "${HOME}"/.config/systemd/user/

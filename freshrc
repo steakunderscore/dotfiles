@@ -34,6 +34,12 @@ fresh-options --file=~/.zshrc --marker
   fresh freshshell/fresh contrib/source-build.sh
 fresh-options
 
+# Bash
+fresh-options --file=~/.bashrc --marker
+  # Include all common shell config
+  fresh freshshell/fresh contrib/source-build.sh
+fresh-options
+
 # See reason above
 fresh shell/zsh/completion --file=completion/
 
@@ -51,6 +57,7 @@ fresh vim/spell --file=~/.vim/spell/
 fresh junegunn/vim-plug plug.vim --file=~/.vim/autoload/plug.vim
 
 # Shell
+fresh shell/sh/\*
 fresh shell/aliases/\*
 fresh shell/functions/\*
 fresh shell/config/\*

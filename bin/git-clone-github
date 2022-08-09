@@ -22,24 +22,63 @@ if ARGV.delete('-h') || ARGV.delete('--help') || ARGV.length == 0
   exit(0)
 end
 
+# Assume all args are repos to clone
+repos = ARGV
+
+# Check if we can setup a remote for the user
+user = ENV['GITHUB_USERNAME'] || ""
+
 projects = File.expand_path(ENV['PROJECTS'] || '~/Dev')
 
-# USE_SSH=true
-# if ARGV.delete('--http')
-#   USE_SSH=false
-# end
-
-ARGV.each do |repo|
+def get_repo_uri(repo)
   uri = URI(repo)
   uri.host = 'github.com'
   uri.scheme = 'https'
+
+  # Ensure leading slash on path
   uri.path = "/#{uri.path}" if uri.path[0] != '/'
+
+  # Append .git to repo
   uri.path = "#{uri.path}.git" if uri.path[-4..-1] != '.git'
-  gh_user = uri.path.split('/')[0]
-  gh_project = uri.path.split('/')[1..-1].join('/')[0..-5]
-  dir = File.join(projects, uri.host, gh_user)
-  project_dir = File.join(projects, uri.host, gh_user, gh_project)
-  p FileUtils.mkdir_p(dir)
-  p `git clone -o upstream #{uri} #{project_dir}`
-  p `git --git-dir=#{project_dir}/.git remote set-url --push upstream no_push`
+  return uri
+end
+
+def check_path(path)
+  if File.directory?(path)
+    abort("Error, can't clone repo into #{path}")
+  end
+end
+
+repos.each do |repo|
+  uri = get_repo_uri(repo)
+  gh_user = uri.path.split('/')[1]
+  gh_project = uri.path.split('/')[2].delete_suffix('.git')
+  clone_dir = File.join(projects, uri.host, gh_user, gh_project)
+  check_path(clone_dir)
+
+  # create parent path
+  FileUtils.mkdir_p(File.dirname(clone_dir))[0]
+
+  # clone the repo!
+  `git clone -o upstream #{uri} #{clone_dir}`
+  if user != gh_user
+    # Prevent pushing to upstream
+    `git --git-dir=#{clone_dir}/.git remote set-url --push upstream no_push`
+
+    if !(user.nil? || user.empty?)
+      # swap user for fork repo
+      pathsegments = uri.path.split('/')
+      pathsegments[1] = user
+      uri.path = pathsegments.join('/')
+      `git --git-dir=#{clone_dir}/.git remote add steakunderscore #{uri}`
+
+      # setup for push url using ssh/git proto
+      uri.path[0] = ':'
+      uri.scheme = nil
+      uri.user = 'git'
+      giturl = "#{uri}"[2,"#{uri}".length]
+      `git --git-dir=#{clone_dir}/.git remote set-url --push #{user} #{giturl}`
+    end
+  end
+  print "Finished setting up repo #{repo}\n"
 end

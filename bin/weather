@@ -1,0 +1,35 @@
+#!/usr/bin/env gorun
+package main
+
+import (
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+	"strings"
+)
+
+var url string = "https://wttr.in/?format=4"
+
+func main() {
+	resp, err := http.Get(url)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "failed to get data: %s\n", err)
+		os.Exit(2)
+	}
+
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		fmt.Fprintf(os.Stderr, "http request failed with %d\n", resp.StatusCode)
+		os.Exit(3)
+	}
+
+	b, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "failed to read body: %s\n", err)
+		os.Exit(4)
+	}
+	body := strings.TrimSpace(string(b))
+	fmt.Printf("%s\n", body)
+}

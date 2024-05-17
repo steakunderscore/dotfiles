@@ -15,6 +15,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
+Plug 'ledger/vim-ledger'
 
 " language
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }

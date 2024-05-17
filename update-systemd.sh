@@ -5,3 +5,5 @@
 mkdir -p "${HOME}/.config/systemd/user/"
 
 cp -a "${HOME}"/.dotfiles/systemd/user/* "${HOME}"/.config/systemd/user/
+
+ls "${HOME}"/.config/systemd/user/

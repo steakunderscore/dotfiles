@@ -1,8 +1,9 @@
-# Make use of the systemd unit which sets up this socket if agent's not already set
-if [ -z "${SSH_AUTH_SOCK}" ]; then
-  if [ -e "/run/user/$(id -u)/ssh-agent.socket" ]; then
-    export SSH_AUTH_SOCK=/run/user/$(id -u)/ssh-agent.socket
-  fi
+# This makes use of the systemd units
+# Either use the gnome-keyring OR ssh-agent
+if [ -e "/run/user/$(id -u)/keyring/ssh" ]; then
+  export SSH_AUTH_SOCK=/run/user/$(id -u)/keyring/ssh
+elif [ -e "/run/user/$(id -u)/ssh-agent.socket" ]; then
+  export SSH_AUTH_SOCK=/run/user/$(id -u)/ssh-agent.socket
 fi
 
 # Setup path for screen sessions to make use of ssh auth socket

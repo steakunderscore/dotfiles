@@ -27,8 +27,9 @@ fresh config/config/mako/config --file=~/.config/mako/config
 fresh-options --file=~/.zshrc --marker
   fresh shell/zsh/\*
 
-  fresh robbyrussell/oh-my-zsh lib/grep.zsh
-  fresh robbyrussell/oh-my-zsh lib/git.zsh
+  fresh ohmyzsh/ohmyzsh lib/async_prompt.zsh
+  fresh ohmyzsh/ohmyzsh lib/grep.zsh
+  fresh ohmyzsh/ohmyzsh lib/git.zsh
 
   # Include all common shell config
   fresh freshshell/fresh contrib/source-build.sh

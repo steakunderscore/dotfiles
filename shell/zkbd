@@ -1,40 +1,39 @@
+# vim: set ft=zsh :
 # zkbd
 
 autoload zkbd
+function zkbd_file() {
+    [[ -f ~/.zkbd/${TERM}-${VENDOR}-${OSTYPE} ]] && printf '%s' ~/".zkbd/${TERM}-${VENDOR}-${OSTYPE}" && return 0
+    [[ -f ~/.zkbd/${TERM}-${DISPLAY}          ]] && printf '%s' ~/".zkbd/${TERM}-${DISPLAY}"          && return 0
+    return 1
+}
 
-[ ! -d ~/.zsh/zkbd.d ] && mkdir -p ~/.zsh/zkbd
-
-if [[ $OSTYPE == darwin* ]]; then
-    local file_name=$TERM-"darwin"
-else
-    local file_name=$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
-fi
-
-
-if [ -f ~/.zsh/zkbd.d/$file_name ]; then
-    source ~/.zsh/zkbd.d/$file_name
-
-elif [ -f ~/.zsh/.zkbd/$file_name ]; then
-    source ~/.zsh/.zkbd/$file_name
-
-elif [ -f ~/.zkbd/$file_name ]; then
-    source ~/.zkbd/$file_name
-
-else
-    mkdir -p ~/.zkbd
+[[ ! -d ~/.zkbd ]] && mkdir ~/.zkbd
+keyfile=$(zkbd_file)
+ret=$?
+if [[ ${ret} -ne 0 ]]; then
     zkbd
-    source ~/.zkbd/$file_name
+    keyfile=$(zkbd_file)
+    ret=$?
 fi
+if [[ ${ret} -eq 0 ]] ; then
+    source "${keyfile}"
+else
+    printf 'Failed to setup keys using zkbd.\n'
+fi
+unfunction zkbd_file; unset keyfile ret
 
+# setup key accordingly
+[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
+[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
+[[ -n "${key[Home]}"    ]]  && bindkey -M vicmd "${key[Home]}"    beginning-of-line
+[[ -n "${key[End]}"     ]]  && bindkey -M vicmd "${key[End]}"     end-of-line
+[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
+[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
+[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
+[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
+[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
+[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
 
-[[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
-[[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
-[[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
-[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" up-line-or-history
-[[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char
-[[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
-[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" down-line-or-history
-[[ -n ${key[Up]} ]] && bindkey "${key[Up]}" up-line-or-search
-[[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
-[[ -n ${key[Down]} ]] && bindkey "${key[Down]}" down-line-or-search
-[[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
+[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"   history-search-backward
+[[ -n "${key[PageDown]}"   ]]  && bindkey  "${key[PageDown]}"   history-search-forward

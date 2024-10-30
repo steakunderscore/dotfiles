@@ -3,10 +3,6 @@ setopt interactive_comments         # escape commands so i can use them later (a
 setopt list_types                   # show types in completion
 setopt cd_able_vars                 # if the argument to cd is the name of a parameter whose value is a valid directory, it will become the current directory.
 setopt no_auto_name_dirs            # see: http://www.neactar.com/shell/fix-for-wrong-prompt-dir-when-using-zsh-project-rvmrc-and-oh-my-zsh
-setopt hist_ignore_dups             # ignore duplication command history list
-setopt hist_verify                  # expand history onto the current line instead of executing it
-setopt hist_expire_dups_first       # remove oldest duplicate commands from the history first
-setopt hist_ignore_space            # don't save commands beginning with spaces to history
 setopt extended_history             # save beginning time and elapsed time before commands in history
 setopt append_history               # append to the end of the history file
 setopt inc_append_history           # always be saving history (not just when the shell exits)
@@ -25,8 +21,16 @@ WORDCHARS=''
 
 # history
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=60000
+SAVEHIST=60000
+setopt hist_ignore_all_dups         # remove old command if new one is a duplicate
+setopt hist_reduce_blanks           # strip superfluous blanks
+setopt hist_ignore_dups             # ignore duplication command history list
+setopt hist_verify                  # expand history onto the current line instead of executing it
+setopt hist_expire_dups_first       # remove oldest duplicate commands from the history first
+setopt hist_ignore_space            # don't save commands beginning with spaces to history
+setopt hist_find_no_dups            # do not display previously found command
+setopt hist_save_no_dups            # omit older duplicates of newer commands
 
 # show time a command took if over 4 sec
 export REPORTTIME=4

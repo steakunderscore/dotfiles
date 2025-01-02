@@ -44,7 +44,7 @@
   st = status
   push = push --recurse-submodules=check
   hunt = log --after='48 hours ago' --author
-  work = checkout origin/master -b
+  work = checkout origin/main -b
   wip = !git add -u && git commit -m "WIP"
   scrub = clean -dxf
   ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ -o .gitignore ;}; gi"

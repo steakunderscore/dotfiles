@@ -22,6 +22,9 @@ fresh config/config/sway/config --file=~/.config/sway/config
 fresh config/config/waybar/config --file=~/.config/waybar/config
 fresh config/config/waybar/style.css --file=~/.config/waybar/style.css
 
+# environment.d
+fresh config/config/environment.d/10-wayland.conf --file=~/.config/environment.d/10-wayland.conf
+
 # Setup device-specific sway config
 case "$(hostnamectl hostname)" in
   "edamame")

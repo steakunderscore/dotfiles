@@ -19,6 +19,15 @@ fresh config/i3/conky-wrapper.sh --bin=~/.i3/conky-wrapper.sh
 
 # sway
 fresh config/config/sway/config --file=~/.config/sway/config
+fresh config/config/waybar/config --file=~/.config/waybar/config
+fresh config/config/waybar/style.css --file=~/.config/waybar/style.css
+
+# Setup device-specific sway config
+case "$(hostnamectl hostname)" in
+  "edamame")
+    fresh config/config/sway/devices/edamame.conf --file ~/.config/sway/devices/current.conf
+    ;;
+esac
 
 # mako
 fresh config/config/mako/config --file=~/.config/mako/config

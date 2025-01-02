@@ -13,52 +13,27 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your alacritty as terminal emulator
+# Set terminal emulator
 set $term alacritty
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+# Set application launcher
+# set $menu "wofi --show run | xargs swaymsg exec -"
+set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec -
 
 ### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-output eDP-1 resolution 3840x2400 position 0,0 scale 2.0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
+# Wallpaper
+output $external bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output $laptop bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
-### Idle configuration
-#
-# Example configuration:
-#
+### Screen lock configuration
+set $swaylock swaylock -c 000000
 exec swayidle -w \
-          timeout 300 'swaylock -f -c 000000' \
-          timeout 360 'swaymsg "output * dpms off"' \
-               resume 'swaymsg "output * dpms on"' \
-          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
+         timeout 300 '$swaylock' \
+         timeout 310 'swaymsg "output * dpms off"' \
+         resume 'swaymsg "output * dpms on"' \
+         timeout 600 'systemctl suspend ' \
+         before-sleep '$swaylock'
 
 ### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
 input * xkb_layout gb
 
 ### Key bindings
@@ -73,6 +48,9 @@ input * xkb_layout gb
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    # lock screen
+    bindsym $mod+Ctrl+l exec $swaylock
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -113,6 +91,8 @@ input * xkb_layout gb
 #
 # Workspaces:
 #
+    # Just setting what we need to start with
+    workspace 1 output $external
     # Switch to workspace
     bindsym $mod+1 workspace 1
     bindsym $mod+2 workspace 2
@@ -165,6 +145,22 @@ input * xkb_layout gb
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+
+#
+# Window config:
+#
+    for_window [app_id=aptus-upgrade] floating enable
+    for_window [app_id=catfish] floating enable
+    for_window [app_id=pcmanfm] floating enable
+    for_window [app_id=pavucontrol] floating enable
+    for_window [app_id=eog] floating enable
+    for_window [app_id=ranger] floating enable
+    for_window [app_id=transmission-gtk] floating enable
+    for_window [app_id=io.github.celluloid_player.Celluloid] floating enable
+    for_window [app_id=foot] floating enable
+    for_window [app_id=zenity] floating enable
+    for_window [app_id=apostrophe title=Export] floating enable
+
 #
 # Scratchpad:
 #
@@ -177,6 +173,28 @@ input * xkb_layout gb
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
+#
+# Multimedia keys
+#
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+    bindsym XF86AudioPlay exec playerctl play-pause
+    bindsym XF86AudioNext exec playerctl next
+    bindsym XF86AudioPrev exec playerctl previous
+
+#
+# Screenshots
+#
+    bindsym $mod+p       exec grimshot save active
+    bindsym $mod+Shift+p exec grimshot save area
+    bindsym $mod+Alt+p   exec grimshot save output
+    bindsym $mod+Ctrl+p  exec grimshot save window
+
 #
 # Resizing containers:
 #
@@ -202,33 +220,10 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+    swaybar_command waybar
 }
-
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym XF86MonBrightnessUp exec brightnessctl set +5%
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
 
 include /etc/sway/config.d/*
 
+include ~/.config/sway/devices/current.conf

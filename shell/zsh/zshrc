@@ -21,8 +21,8 @@ WORDCHARS=''
 
 # history
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=60000
-SAVEHIST=60000
+HISTSIZE=45000
+SAVEHIST=45000
 setopt hist_ignore_all_dups         # remove old command if new one is a duplicate
 setopt hist_reduce_blanks           # strip superfluous blanks
 setopt hist_ignore_dups             # ignore duplication command history list

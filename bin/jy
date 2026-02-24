@@ -1,14 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env sh
 
-# Convert json to yaml
+if ! command -v yq >/dev/null 2>&1
+then
+    echo "yq need to be installed"
+    echo "See https://github.com/mikefarah/yq/#install"
+    exit 1
+fi
 
-import sys
-import yaml
-import json
-
-try:
-    data = json.load(sys.stdin)
-except json.decoder.JSONDecodeError:
-    sys.exit("Doesn't look like you passed in valid json")
-
-yaml.safe_dump(data, sys.stdout, default_flow_style=False)
+yq --input-format json --output-format yaml $@

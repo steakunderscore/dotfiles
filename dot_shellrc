@@ -1,0 +1,81 @@
+
+export PROJECTS=~/Dev
+
+export EDITOR='vim'
+export PSQL_EDITOR='vim +"set syntax=sql"'
+
+export ARCHFLAGS='-arch x86_64'                 # archflags
+export GITHUB_USERNAME="$(git config github.username)" # used by git-go
+export GITHUB_URL="$(git config github.url)"    # used by gist
+
+path_add() {
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    export PATH="${PATH:+"$PATH:"}$1"
+  fi
+}
+
+path_add "$HOME/bin"
+path_add "$HOME/.local/bin"
+path_add "/usr/local/bin"
+path_add "/usr/local/sbin"
+path_add "$HOME/go/bin"
+path_add "${KREW_ROOT:-$HOME/.krew}/bin"
+path_add "${HOME}/./node_modules/.bin"
+path_add "/usr/local/share/npm/bin"
+path_add "$HOME/.cargo/bin"
+
+alias ls="ls -F"
+alias ll="ls -lGFh"
+alias history="fc -l 1"
+alias dev="screen -RD development"
+alias build="screen -RD build"
+alias serve="python3 -m http.server"
+alias k='kubectl'
+# copy with a progress bar.
+alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
+
+# pick a project
+p() {
+  cd "$PROJECTS/$(find "$PROJECTS" -maxdepth 5 -name .git | sed 's#/\.git$##' | sed "s#^$PROJECTS/##" | fzf)"
+}
+
+# source dotfiles
+reload() {
+  source $HOME/.zshrc &&
+  echo "Your dot files are now \033[1;32msourced\033[0m."
+}
+
+# I love colour
+if ls --version 2> /dev/null | grep -q 'GNU coreutils'
+then
+  alias ls="ls --color=auto --classify --block-size=\'1"
+else
+  alias ls='ls -GFh'
+fi
+
+alias less='less -iM'
+export PAGER='less -SFXiMR'
+
+export NVM_DIR="$HOME/.nvm"
+if [[ -a $NVM_DIR ]]
+then
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+# config ssh-agent
+
+# This makes use of the systemd units
+# Either use gcr, gnome-keyring OR ssh-agent
+if [ -e "$XDG_RUNTIME_DIR/gcr/ssh" ]; then
+  export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
+elif [ -e "$XDG_RUNTIME_DIR/keyring/ssh" ]; then
+  export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/keyring/ssh
+elif [ -e "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
+  export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+fi
+
+# Setup path for screen sessions to make use of ssh auth socket
+if [ -S "$SSH_AUTH_SOCK" ] && [ ! -h "$SSH_AUTH_SOCK" ]; then
+    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi

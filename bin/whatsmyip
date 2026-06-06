@@ -1,5 +1,0 @@
-#!/bin/sh
-# Prints the public IP address used for the web request
-
-curl --connect-timeout 1.5 --silent checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
-curl --connect-timeout 1.5 --silent checkipv6.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'

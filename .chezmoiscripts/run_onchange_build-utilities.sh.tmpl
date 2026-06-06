@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+# utilities source hashes:
+# internet: {{ include "dot_local/src/utilities/cmd/internet/main.go" | sha256sum }}
+# whatsmyip: {{ include "dot_local/src/utilities/cmd/whatsmyip/main.go" | sha256sum }}
+# git-update-all-branches: {{ include "dot_local/src/utilities/cmd/git-update-all-branches/main.go" | sha256sum }}
+# git-merged: {{ include "dot_local/src/utilities/cmd/git-merged/main.go" | sha256sum }}
+# go.mod: {{ include "dot_local/src/utilities/go.mod" | sha256sum }}
+
+echo "⚙️  Detecting changes in 'utilities' tools... Recompiling Go binaries..."
+
+# Ensure our local bin directory exists
+mkdir -p "$HOME/.local/bin"
+
+# Build directly from the chezmoi source directory to avoid race conditions with deployment
+SOURCE_DIR="{{ .chezmoi.sourceDir }}/dot_local/src/utilities"
+
+if cd "$SOURCE_DIR"; then
+    go build -o "$HOME/.local/bin/internet" ./cmd/internet
+    go build -o "$HOME/.local/bin/whatsmyip" ./cmd/whatsmyip
+    go build -o "$HOME/.local/bin/git-update-all-branches" ./cmd/git-update-all-branches
+    go build -o "$HOME/.local/bin/git-merged" ./cmd/git-merged
+    echo "✅ 'utilities' binaries updated successfully at ~/.local/bin/"
+else
+    echo "❌ Error: Could not find source directory $SOURCE_DIR"
+    exit 1
+fi
+

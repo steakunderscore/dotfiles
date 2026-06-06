@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# chezmoi version: {{ .chezmoi.version.version }}
+completion_dir="$HOME/.local/share/zsh/site-functions"
+mkdir -p "$completion_dir"
+
+if command -v chezmoi >/dev/null; then
+  chezmoi completion zsh --output="$completion_dir/_chezmoi"
+fi

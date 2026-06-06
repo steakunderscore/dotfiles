@@ -15,6 +15,7 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
+fpath=(~/.local/share/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
 
@@ -45,4 +46,63 @@ bindkey '^R' history-incremental-search-backward
 # Source ~/.shellrc
 if [ -f ~/.shellrc ]; then
   source ~/.shellrc
+fi
+
+# kubectl configuration
+if [ $commands[kubectl] ]; then
+  source <(kubectl completion $(basename ${SHELL}))
+fi
+
+# If initial kube config exists
+if [ -f ${HOME}/.kube/config ]; then
+  export KUBECONFIG=${HOME}/.kube/config
+  # Check for more configs
+  if [ -d ${HOME}/.kube/configs/ ]; then
+    for file in ${HOME}/.kube/configs/*.yaml; do
+      export KUBECONFIG=$KUBECONFIG:$file
+    done
+  fi
+fi
+
+# AWS configuration
+if [ $commands[aws_completer] ]; then
+  autoload bashcompinit && bashcompinit
+  autoload -Uz compinit && compinit
+  complete -C '/usr/local/bin/aws_completer' aws
+fi
+
+# GCloud configuration
+[ -d /opt/google-cloud-sdk ] && export GOOGLE_CLOUD_SDK_HOME="/opt/google-cloud-sdk"
+[ -d /usr/share/google-cloud-sdk ] && export GOOGLE_CLOUD_SDK_HOME="/usr/share/google-cloud-sdk"
+if [[ -d $GOOGLE_CLOUD_SDK_HOME ]]; then
+  [ -f ${GOOGLE_CLOUD_SDK_HOME}/completion.zsh.inc ] && . "${GOOGLE_CLOUD_SDK_HOME}/completion.zsh.inc"
+fi
+
+# Helm configuration
+if [ $commands[helm] ]; then
+  source <(helm completion $(basename ${SHELL}))
+fi
+
+# Just configuration
+if [ $commands[just] ]; then
+  source <(just --completions $(basename ${SHELL}))
+fi
+
+# Minikube configuration
+if [ $commands[minikube] ]; then
+  export MINIKUBE_WANTUPDATENOTIFICATION=false
+  source <(minikube completion $(basename $SHELL))
+fi
+
+# Please (plz) configuration - https://please.build/
+if [ $commands[plz] ]; then
+  source <(plz --completion_script)
+elif [ $commands[please] ]; then
+  alias plz=please
+  source <(plz --completion_script)
+fi
+
+# Zellij configuration
+if [ $commands[zellij] ]; then
+  # Completion is handled via fpath in ~/.local/share/zsh/site-functions
 fi

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# zellij version: {{ output "zellij" "--version" | trim }}
+completion_dir="$HOME/.local/share/zsh/site-functions"
+mkdir -p "$completion_dir"
+
+if command -v zellij >/dev/null; then
+  zellij setup --generate-completion zsh > "$completion_dir/_zellij"
+fi

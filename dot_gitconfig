@@ -1,0 +1,68 @@
+# Set your name and email with the following:
+#   git config -f ~/.gitconfig.local user.name "John Appleseed"
+#   git config -f ~/.gitconfig.local user.email me@example.com
+#
+# If you want github configs setup
+#   git config -f ~/.gitconfig.local github.username foobar
+#   git config -f ~/.gitconfig.local github.gisturl "https://gist.github.com"
+
+[include]
+  path = ~/.gitconfig.local
+[init]
+  defaultBranch = main
+[color]
+  ui = auto
+[core]
+  editor = vim
+  excludesfile = ~/.gitignore
+[rebase]
+  autosquash = true
+[color "diff"]
+  commit = yellow reverse
+[diff]
+  renames = true
+[push]
+  default = current
+[fetch]
+  prune = true
+[merge]
+	tool = nvimdiff
+#	Old configs I'm not sure I need
+#	log = true
+#	conflictstyle = diff3
+[mergetool]
+    prompt = false       # Bypasses the "Launch nvimdiff?" confirmation prompt per file
+    keepBackup = false   # Prevents Git from leaving messy *.orig backup files behind
+[mergetool "nvimdiff"]
+    # Choose ONE layout strategy below:
+
+    # Strategy A: Highly readable 3-column layout (Local on left, Remote on right, Editing target in the middle)
+    layout = "LOCAL,MERGED,REMOTE"
+    
+    # Strategy B: Classic 4-pane layout (Local, Base, and Remote stacked on top; Merged editable file on bottom)
+    # layout = "LOCAL,BASE,REMOTE / MERGED"
+    #
+[alias]
+  co = checkout
+  ci = commit
+  rb = rebase
+  rc = rebase --continue
+  rs = rebase --skip
+  br = branch -vva
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  statsu = status
+  st = status
+  push = push --recurse-submodules=check
+  hunt = log --after='48 hours ago' --author
+  work = checkout origin/main -b
+  wip = !git add -u && git commit -m "WIP"
+  scrub = clean -dxf
+  ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ -o .gitignore ;}; gi"
+[branch]
+  autosetuprebase = always
+[grep]
+  linenumber = true
+#[pager]
+#  log = diff-highlight | less
+#  show = diff-highlight | less
+#  diff = diff-highlight | less

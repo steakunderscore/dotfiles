@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+require 'webrick'
+require 'webrick/httpproxy'
+require 'logger'
+require 'optparse'
+
+cert_name = [%w(CN localhost)]
+
+logger = Logger.new($stderr)
+logger.level = Logger::DEBUG
+
+options = {port: 8080, interface: "localhost"}
+OptionParser.new do |parser|
+    parser.on("-p", "--port PORT", "Port to bind on") do |port|
+      options[:port] = port
+    end
+    parser.on("-i", "--interface INTERFACE", "Interface to bind on") do |interface|
+      options[:interface] = interface
+    end
+end.parse!
+
+proxy = WEBrick::HTTPProxyServer.new(
+  Port: options[:port],
+  BindAddress: options[:interface],
+  Logger: logger,
+  SSLEnable: true,
+  SSLCertName: cert_name,
+)
+
+trap('INT') { proxy.shutdown }
+trap('TERM') { proxy.shutdown }
+
+proxy.start

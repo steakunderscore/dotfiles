@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+if ! command -v yq >/dev/null 2>&1
+then
+    echo "yq need to be installed"
+    echo "See https://github.com/mikefarah/yq/#install"
+    exit 1
+fi
+
+yq --input-format json --output-format yaml $@

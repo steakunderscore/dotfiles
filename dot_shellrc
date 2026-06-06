@@ -14,15 +14,15 @@ path_add() {
   fi
 }
 
-path_add "$HOME/bin"
-path_add "$HOME/.local/bin"
 path_add "/usr/local/bin"
 path_add "/usr/local/sbin"
+path_add "$HOME/bin"
+path_add "$HOME/.local/bin"
 path_add "$HOME/go/bin"
-path_add "${KREW_ROOT:-$HOME/.krew}/bin"
-path_add "${HOME}/./node_modules/.bin"
-path_add "/usr/local/share/npm/bin"
 path_add "$HOME/.cargo/bin"
+path_add "${HOME}/.node_modules/.bin"
+path_add "/usr/local/share/npm/bin"
+path_add "${KREW_ROOT:-$HOME/.krew}/bin"
 
 alias ls="ls -F"
 alias ll="ls -lGFh"
@@ -65,17 +65,31 @@ fi
 
 # config ssh-agent
 
-# This makes use of the systemd units
-# Either use gcr, gnome-keyring OR ssh-agent
-if [ -e "$XDG_RUNTIME_DIR/gcr/ssh" ]; then
-  export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
-elif [ -e "$XDG_RUNTIME_DIR/keyring/ssh" ]; then
-  export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/keyring/ssh
-elif [ -e "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
-  export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
-fi
+# Check if we are inside a multiplexer (Zellij, Tmux, Screen)
+if [ -n "$ZELLIJ" ] || [ -n "$TMUX" ] || [ -n "$STY" ]; then
+    # Inside a multiplexer, rely on the stable symlink
+    export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+else
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+        # SSH connection: Use the forwarded agent socket
+        if [ -S "$SSH_AUTH_SOCK" ] && [ ! -h "$SSH_AUTH_SOCK" ]; then
+            ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+        fi
+    else
+        # Local connection: Use GNOME keyring / gcr / ssh-agent
+        if [ -e "$XDG_RUNTIME_DIR/gcr/ssh" ]; then
+          export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
+        elif [ -e "$XDG_RUNTIME_DIR/keyring/ssh" ]; then
+          export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/keyring/ssh
+        elif [ -e "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
+          export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+        fi
 
-# Setup path for screen sessions to make use of ssh auth socket
-if [ -S "$SSH_AUTH_SOCK" ] && [ ! -h "$SSH_AUTH_SOCK" ]; then
-    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+        # Update the stable symlink for the local agent
+        if [ -S "$SSH_AUTH_SOCK" ] && [ ! -h "$SSH_AUTH_SOCK" ]; then
+            ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+        fi
+    fi
+    # Always export the stable symlink so it's inherited by child processes (like zellij)
+    export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 fi

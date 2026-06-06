@@ -1,0 +1,9 @@
+# Include system-wide defaults (keeps standard Ctrl+A, Ctrl+E, etc.)
+$include /etc/inputrc
+
+# Show completions on first tab instead of double-tap
+set show-all-if-ambiguous on
+
+# Search history using typed prefix (Up/Down Arrow keys)
+"\e[A": history-search-backward
+"\e[B": history-search-forward

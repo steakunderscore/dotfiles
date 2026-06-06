@@ -429,7 +429,7 @@ copy_on_select false
 // if it is already running or creates it otherwise.
 // Default: false
 // 
-// attach_to_session true
+attach_to_session true
  
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -496,7 +496,7 @@ copy_on_select false
 // - false
 // Default: false
 // 
-// web_server false
+web_server false
 // Whether to allow sessions started in the terminal to be shared through a local web server, assuming one is
 // running (see the `web_server` option for more details).
 // (Requires restart)

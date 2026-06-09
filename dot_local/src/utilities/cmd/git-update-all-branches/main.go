@@ -44,13 +44,31 @@ func main() {
 	}
 	branches := strings.Split(branchesRaw, "\n")
 
+	// 3.5 Get branches checked out in worktrees
+	wtOut, err := runCommand("git", "worktree", "list", "--porcelain")
+	if err != nil {
+		fmt.Printf("❌ Error listing worktrees: %v\n", err)
+		os.Exit(1)
+	}
+	checkedOutBranches := make(map[string]bool)
+	for _, line := range strings.Split(wtOut, "\n") {
+		if strings.HasPrefix(line, "branch refs/heads/") {
+			b := strings.TrimPrefix(line, "branch refs/heads/")
+			checkedOutBranches[b] = true
+		}
+	}
+
 	// 4. Update each branch
 	for _, branch := range branches {
 		if branch == "" {
 			continue
 		}
+		if checkedOutBranches[branch] && branch != currentBranch {
+			fmt.Printf("⏭️  Skipping %s: checked out in another worktree\n", branch)
+			continue
+		}
 		fmt.Printf("🔄 Updating branch: %s\n", branch)
-		
+
 		if _, err := runCommand("git", "checkout", branch); err != nil {
 			fmt.Printf("❌ Error checking out %s: %v\n", branch, err)
 			continue
